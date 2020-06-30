@@ -8,21 +8,29 @@
 
 <title>Function reference • rlang</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,7 +38,9 @@
 
 
 
+
 <meta property="og:title" content="Function reference" />
+
 
 
 
@@ -54,9 +64,10 @@
   gtag('config', 'UA-115082821-1');
 </script>
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -70,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rlang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.6.9000</span>
       </span>
     </div>
 
@@ -78,7 +89,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -97,6 +108,12 @@
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Release notes</li>
     <li>
+      <a href="https://www.tidyverse.org/blog/2020/02/glue-strings-and-tidy-eval/">Version 0.4.3</a>
+    </li>
+    <li>
+      <a href="https://www.tidyverse.org/articles/2019/06/rlang-0-4-0/">Version 0.4.0</a>
+    </li>
+    <li>
       <a href="https://www.tidyverse.org/articles/2019/01/rlang-0-3-1/">Version 0.3.1</a>
     </li>
     <li>
@@ -112,11 +129,10 @@
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/r-lib/rlang">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/r-lib/rlang/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -127,6 +143,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -150,18 +167,35 @@
           <p class="section-desc"><p>Quote arguments and expressions with unquoting support. The quosure variants wrap an environment with the expression.</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
-          <p><code><a href="quotation.html">expr()</a></code> <code><a href="quotation.html">enexpr()</a></code> <code><a href="quotation.html">exprs()</a></code> <code><a href="quotation.html">enexprs()</a></code> <code><a href="quotation.html">ensym()</a></code> <code><a href="quotation.html">ensyms()</a></code> <code><a href="quotation.html">quo()</a></code> <code><a href="quotation.html">enquo()</a></code> <code><a href="quotation.html">quos()</a></code> <code><a href="quotation.html">enquos()</a></code> </p>
+          <p><code><a href="nse-defuse.html">expr()</a></code> <code><a href="nse-defuse.html">enexpr()</a></code> <code><a href="nse-defuse.html">exprs()</a></code> <code><a href="nse-defuse.html">enexprs()</a></code> <code><a href="nse-defuse.html">ensym()</a></code> <code><a href="nse-defuse.html">ensyms()</a></code> <code><a href="nse-defuse.html">quo()</a></code> <code><a href="nse-defuse.html">enquo()</a></code> <code><a href="nse-defuse.html">quos()</a></code> <code><a href="nse-defuse.html">enquos()</a></code> </p>
         </td>
-        <td><p>Quotation</p></td>
+        <td><p>Defuse R expressions</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="quasiquotation.html">qq_show()</a></code> </p>
+          <p><code><a href="nse-force.html">qq_show()</a></code> </p>
         </td>
-        <td><p>Quasiquotation of an expression</p></td>
+        <td><p>Force parts of an expression</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_label.html">as_label()</a></code> </p>
+        </td>
+        <td><p>Create a default name for an R object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_name.html">as_name()</a></code> </p>
+        </td>
+        <td><p>Extract names from symbols</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -170,12 +204,29 @@
           <p class="section-desc"><p>Collect arguments contained in <code>...</code> with <code>!!!</code> and name-unquoting support.</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
-          <p><code><a href="tidy-dots.html">dots_list()</a></code> <code><a href="tidy-dots.html">list2()</a></code> </p>
+          <p><code><a href="dyn-dots.html">dyn-dots</a></code> </p>
         </td>
-        <td><p>Collect dots tidily</p></td>
+        <td><p>Dynamic dots</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="list2.html">list2()</a></code> <code><a href="list2.html">dots_list()</a></code> </p>
+        </td>
+        <td><p>Collect dots in a list</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="pairlist2.html">pairlist2()</a></code> </p>
+        </td>
+        <td><p>Create pairlists with splicing support</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -184,6 +235,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -193,7 +249,19 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="trace_back.html">trace_back()</a></code> </p>
+          <p><code><a href="cnd_message.html">cnd_message()</a></code> <code><a href="cnd_message.html">cnd_header()</a></code> <code><a href="cnd_message.html">cnd_body()</a></code> <code><a href="cnd_message.html">cnd_footer()</a></code> </p>
+        </td>
+        <td><p>Build an error message from parts</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="format_error_bullets.html">format_error_bullets()</a></code> </p>
+        </td>
+        <td><p>Format bullets for error messages</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="trace_back.html">trace_back()</a></code> <code><a href="trace_back.html">trace_length()</a></code> </p>
         </td>
         <td><p>Capture a backtrace</p></td>
       </tr><tr>
@@ -202,6 +270,36 @@
           <p><code><a href="with_abort.html">with_abort()</a></code> </p>
         </td>
         <td><p>Promote all errors to rlang errors</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="entrace.html">entrace()</a></code> <code><a href="entrace.html">cnd_entrace()</a></code> </p>
+        </td>
+        <td><p>Add backtrace from error handler</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cnd_signal.html">cnd_signal()</a></code> </p>
+        </td>
+        <td><p>Signal a condition object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="last_error.html">last_error()</a></code> <code><a href="last_error.html">last_trace()</a></code> </p>
+        </td>
+        <td><p>Last <code>abort()</code> error</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rlang_backtrace_on_error.html">rlang_backtrace_on_error</a></code> </p>
+        </td>
+        <td><p>Display backtrace on error</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="catch_cnd.html">catch_cnd()</a></code> </p>
+        </td>
+        <td><p>Catch a condition</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -210,6 +308,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -236,6 +339,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -248,6 +356,12 @@
           <p><code><a href="is_symbol.html">is_symbol()</a></code> </p>
         </td>
         <td><p>Is object a symbol?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_string.html">as_string()</a></code> </p>
+        </td>
+        <td><p>Cast symbol to string</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -256,6 +370,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -285,7 +404,7 @@
         <td>
           <p><code><a href="call_name.html">call_name()</a></code> <code><a href="call_name.html">call_ns()</a></code> </p>
         </td>
-        <td><p>Extract function name or namespaced of a call</p></td>
+        <td><p>Extract function name or namespace of a call</p></td>
       </tr><tr>
         
         <td>
@@ -312,6 +431,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -339,7 +463,7 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="parse_expr.html">parse_expr()</a></code> <code><a href="parse_expr.html">parse_exprs()</a></code> <code><a href="parse_expr.html">parse_quo()</a></code> <code><a href="parse_expr.html">parse_quos()</a></code> </p>
+          <p><code><a href="parse_expr.html">parse_expr()</a></code> <code><a href="parse_expr.html">parse_exprs()</a></code> </p>
         </td>
         <td><p>Parse R code</p></td>
       </tr><tr>
@@ -362,6 +486,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -406,10 +535,15 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
-          <p><code><a href="f_rhs.html">f_rhs()</a></code> <code><a href="f_rhs.html">`f_rhs<-`()</a></code> <code><a href="f_rhs.html">f_lhs()</a></code> <code><a href="f_rhs.html">`f_lhs<-`()</a></code> <code><a href="f_rhs.html">f_env()</a></code> <code><a href="f_rhs.html">`f_env<-`()</a></code> </p>
+          <p><code><a href="f_rhs.html">f_rhs()</a></code> <code><a href="f_rhs.html">`f_rhs&lt;-`()</a></code> <code><a href="f_rhs.html">f_lhs()</a></code> <code><a href="f_rhs.html">`f_lhs&lt;-`()</a></code> <code><a href="f_rhs.html">f_env()</a></code> <code><a href="f_rhs.html">`f_env&lt;-`()</a></code> </p>
         </td>
         <td><p>Get or set formula components</p></td>
       </tr><tr>
@@ -438,22 +572,27 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
-          <p><code><a href="fn_body.html">fn_body()</a></code> <code><a href="fn_body.html">`fn_body<-`()</a></code> </p>
+          <p><code><a href="fn_body.html">fn_body()</a></code> <code><a href="fn_body.html">`fn_body&lt;-`()</a></code> </p>
         </td>
         <td><p>Get or set function body</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="fn_env.html">fn_env()</a></code> <code><a href="fn_env.html">`fn_env<-`()</a></code> </p>
+          <p><code><a href="fn_env.html">fn_env()</a></code> <code><a href="fn_env.html">`fn_env&lt;-`()</a></code> </p>
         </td>
         <td><p>Return the closure environment of a function</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="fn_fmls.html">fn_fmls()</a></code> <code><a href="fn_fmls.html">fn_fmls_names()</a></code> <code><a href="fn_fmls.html">fn_fmls_syms()</a></code> <code><a href="fn_fmls.html">`fn_fmls<-`()</a></code> <code><a href="fn_fmls.html">`fn_fmls_names<-`()</a></code> </p>
+          <p><code><a href="fn_fmls.html">fn_fmls()</a></code> <code><a href="fn_fmls.html">fn_fmls_names()</a></code> <code><a href="fn_fmls.html">fn_fmls_syms()</a></code> <code><a href="fn_fmls.html">`fn_fmls&lt;-`()</a></code> <code><a href="fn_fmls.html">`fn_fmls_names&lt;-`()</a></code> </p>
         </td>
         <td><p>Extract arguments from a function</p></td>
       </tr><tr>
@@ -482,6 +621,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -550,6 +694,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -565,9 +714,21 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="scoped_bindings.html">scoped_bindings()</a></code> <code><a href="scoped_bindings.html">with_bindings()</a></code> </p>
+          <p><code><a href="env_poke.html">env_poke()</a></code> </p>
+        </td>
+        <td><p>Poke an object in an environment</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="local_bindings.html">local_bindings()</a></code> <code><a href="local_bindings.html">with_bindings()</a></code> </p>
         </td>
         <td><p>Temporarily change bindings of an environment</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="scoped_interactive.html">scoped_interactive()</a></code> <code><a href="scoped_interactive.html">scoped_options()</a></code> <code><a href="scoped_interactive.html">scoped_bindings()</a></code> </p>
+        </td>
+        <td><p>Questioning <code>scoped_</code> functions</p></td>
       </tr><tr>
         
         <td>
@@ -586,12 +747,6 @@
           <p><code><a href="env_names.html">env_names()</a></code> <code><a href="env_names.html">env_length()</a></code> </p>
         </td>
         <td><p>Names and numbers of symbols bound in an environment</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="env_poke.html">env_poke()</a></code> </p>
-        </td>
-        <td><p>Poke an object in an environment</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -600,6 +755,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -617,7 +777,7 @@
         <td>
           <p><code><a href="is_installed.html">is_installed()</a></code> </p>
         </td>
-        <td><p>Is a package installed in the library?</p></td>
+        <td><p>Are packages installed in any of the libraries?</p></td>
       </tr><tr>
         
         <td>
@@ -644,6 +804,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -668,6 +833,12 @@
           <p><code><a href="zap.html">zap()</a></code> <code><a href="zap.html">is_zap()</a></code> </p>
         </td>
         <td><p>Create zap objects</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="done.html">done()</a></code> <code><a href="done.html">is_done_box()</a></code> </p>
+        </td>
+        <td><p>Box a final value for early termination</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -676,6 +847,11 @@
           <p class="section-desc"><p>Atomic vector constructors have implicit splicing (i.e. splice lists automatically), while the list constructor has explicit splicing.</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -685,9 +861,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="tidy-dots.html">dots_list()</a></code> <code><a href="tidy-dots.html">list2()</a></code> </p>
+          <p><code><a href="list2.html">list2()</a></code> <code><a href="list2.html">dots_list()</a></code> </p>
         </td>
-        <td><p>Collect dots tidily</p></td>
+        <td><p>Collect dots in a list</p></td>
       </tr><tr>
         
         <td>
@@ -708,6 +884,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -720,6 +901,18 @@
           <p><code><a href="names2.html">names2()</a></code> </p>
         </td>
         <td><p>Get names of a vector</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="has_name.html">has_name()</a></code> </p>
+        </td>
+        <td><p>Does an object have an element with this name?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_named.html">is_named()</a></code> <code><a href="is_named.html">is_dictionaryish()</a></code> <code><a href="is_named.html">have_name()</a></code> </p>
+        </td>
+        <td><p>Is object named?</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -728,6 +921,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -772,6 +970,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -787,7 +990,7 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="op-get-attr.html">`%@%`</a></code> <code><a href="op-get-attr.html">x</a></code> </p>
+          <p><code><a href="op-get-attr.html">`%@%`</a></code> <code><a href="op-get-attr.html">`%@%&lt;-`()</a></code> </p>
         </td>
         <td><p>Infix attribute accessor and setter</p></td>
       </tr>
@@ -798,6 +1001,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -818,12 +1026,17 @@
           <p class="section-desc"><p>Create data masking APIs à-la dplyr or tidyr. These functions are meant for developers rather than users.</p></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
-          <p><code><a href="tidyeval-data.html">.data</a></code> </p>
+          <p><code><a href="tidyeval-data.html">.data</a></code> <code><a href="tidyeval-data.html">.env</a></code> </p>
         </td>
-        <td><p>Data pronoun for tidy evaluation</p></td>
+        <td><p>Data pronouns for tidy evaluation</p></td>
       </tr><tr>
         
         <td>
@@ -844,6 +1057,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -858,16 +1076,33 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
-          <p><code><a href="is_interactive.html">is_interactive()</a></code> <code><a href="is_interactive.html">scoped_interactive()</a></code> <code><a href="is_interactive.html">with_interactive()</a></code> </p>
+          <p><code><a href="is_interactive.html">is_interactive()</a></code> <code><a href="is_interactive.html">local_interactive()</a></code> <code><a href="is_interactive.html">with_interactive()</a></code> </p>
         </td>
         <td><p>Is R running interactively?</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="scoped_options.html">scoped_options()</a></code> <code><a href="scoped_options.html">with_options()</a></code> <code><a href="scoped_options.html">push_options()</a></code> <code><a href="scoped_options.html">peek_options()</a></code> <code><a href="scoped_options.html">peek_option()</a></code> </p>
+          <p><code><a href="scoped_interactive.html">scoped_interactive()</a></code> <code><a href="scoped_interactive.html">scoped_options()</a></code> <code><a href="scoped_interactive.html">scoped_bindings()</a></code> </p>
+        </td>
+        <td><p>Questioning <code>scoped_</code> functions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="faq-options.html">faq-options</a></code> </p>
+        </td>
+        <td><p>Global options for rlang</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="local_options.html">local_options()</a></code> <code><a href="local_options.html">with_options()</a></code> <code><a href="local_options.html">push_options()</a></code> <code><a href="local_options.html">peek_options()</a></code> <code><a href="local_options.html">peek_option()</a></code> </p>
         </td>
         <td><p>Change global options</p></td>
       </tr>
@@ -878,6 +1113,11 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
         
         <td>
@@ -897,39 +1137,36 @@
         </td>
         <td><p>Get key/value from a weak reference object</p></td>
       </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-faq" class="hasAnchor"><a href="#section-faq" class="anchor"></a>FAQ</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="faq-options.html">faq-options</a></code> </p>
+        </td>
+        <td><p>Global options for rlang</p></td>
+      </tr>
     </tbody>
     </table>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-tidy-evaluation">Tidy evaluation</a></li>
-      <li><a href="#section-tidy-dots">Tidy dots</a></li>
-      <li><a href="#section-errors-conditions-and-backtraces">Errors, conditions, and backtraces</a></li>
-      <li><a href="#section-evaluate-expressions">Evaluate expressions</a></li>
-      <li><a href="#section-symbols">Symbols</a></li>
-      <li><a href="#section-calls">Calls</a></li>
-      <li><a href="#section-expressions">Expressions</a></li>
-      <li><a href="#section-quosures">Quosures</a></li>
-      <li><a href="#section-formulas">Formulas</a></li>
-      <li><a href="#section-functions">Functions</a></li>
-      <li><a href="#section-environments">Environments</a></li>
-      <li><a href="#section-environment-bindings">Environment bindings</a></li>
-      <li><a href="#section-search-path-and-namespaces">Search path and namespaces</a></li>
-      <li><a href="#section-s-">S3</a></li>
-      <li><a href="#section-create-vectors">Create vectors</a></li>
-      <li><a href="#section-attributes">Attributes</a></li>
-      <li><a href="#section-type-predicates">Type predicates</a></li>
-      <li><a href="#section-operators">Operators</a></li>
-      <li><a href="#section-function-arguments">Function arguments</a></li>
-      <li><a href="#section-create-tidy-evaluation-apis">Create tidy evaluation APIs</a></li>
-      <li><a href="#section-condition-handlers">Condition handlers</a></li>
-      <li><a href="#section-session-state">Session state</a></li>
-      <li><a href="#section-weak-references">Weak references</a></li>
-    </ul>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -937,13 +1174,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

@@ -8,21 +8,29 @@
 
 <title>Add attributes to an object — set_attrs • rlang</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,15 +38,15 @@
 
 
 
+
 <meta property="og:title" content="Add attributes to an object — set_attrs" />
-
-<meta property="og:description" content="" />
-
 <meta property="og:description" content="
+
+
 set_attrs() adds, changes, or zaps attributes of objects. Pass a
 single unnamed NULL argument to zap all attributes. For
 uncopyable types, use mut_attrs()." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -62,9 +70,10 @@ uncopyable types, use mut_attrs()." />
   gtag('config', 'UA-115082821-1');
 </script>
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -78,7 +87,7 @@ uncopyable types, use mut_attrs()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rlang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.6.9000</span>
       </span>
     </div>
 
@@ -86,7 +95,7 @@ uncopyable types, use mut_attrs()." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -105,6 +114,12 @@ uncopyable types, use mut_attrs()." />
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Release notes</li>
     <li>
+      <a href="https://www.tidyverse.org/blog/2020/02/glue-strings-and-tidy-eval/">Version 0.4.3</a>
+    </li>
+    <li>
+      <a href="https://www.tidyverse.org/articles/2019/06/rlang-0-4-0/">Version 0.4.0</a>
+    </li>
+    <li>
       <a href="https://www.tidyverse.org/articles/2019/01/rlang-0-3-1/">Version 0.3.1</a>
     </li>
     <li>
@@ -120,11 +135,10 @@ uncopyable types, use mut_attrs()." />
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/r-lib/rlang">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/r-lib/rlang/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -135,6 +149,7 @@ uncopyable types, use mut_attrs()." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -146,20 +161,18 @@ uncopyable types, use mut_attrs()." />
     </div>
 
     <div class="ref-description">
-    
     <p><a href='https://www.tidyverse.org/lifecycle/#experimental'><img src='figures/lifecycle-experimental.svg' alt='Experimental lifecycle'></a>
 
-    <img src='figures/lifecycle-deprecated.svg' alt='Deprecated lifecycle' /></p>
+<img src='figures/lifecycle-deprecated.svg' alt='Deprecated lifecycle' /></p>
 <p><code>set_attrs()</code> adds, changes, or zaps attributes of objects. Pass a
 single unnamed <code>NULL</code> argument to zap all attributes. For
-<a href='is_copyable.html'>uncopyable</a> types, use <code>mut_attrs()</code>.</p>
-    
+uncopyable types, use <code>mut_attrs()</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>set_attrs</span>(<span class='no'>.x</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>set_attrs</span>(<span class='kw'>.x</span>, <span class='kw'>...</span>)
 
-<span class='fu'>mut_attrs</span>(<span class='no'>.x</span>, <span class='no'>...</span>)</pre>
-    
+<span class='fu'>mut_attrs</span>(<span class='kw'>.x</span>, <span class='kw'>...</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -169,39 +182,38 @@ single unnamed <code>NULL</code> argument to zap all attributes. For
     </tr>
     <tr>
       <th>...</th>
-      <td><p>A list of named attributes. These have <a href='tidy-dots.html'>explicit splicing semantics</a>. Pass a single unnamed <code>NULL</code> argument to
-zap all attributes from <code>.x</code>.</p></td>
+      <td><p>&lt;dynamic&gt; A list of named attributes. Pass
+a single unnamed <code>NULL</code> argument to zap all attributes from <code>.x</code>.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>set_attrs()</code> returns a modified <a href='duplicate.html'>shallow copy</a>
+    <p><code>set_attrs()</code> returns a modified shallow copy
 of <code>.x</code>. <code>mut_attrs()</code> invisibly returns the original <code>.x</code>
 modified in place.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Unlike <code><a href='https://www.rdocumentation.org/packages/base/topics/structure'>structure()</a></code>, these setters have no special handling of
+    <p>Unlike <code><a href='https://rdrr.io/r/base/structure.html'>structure()</a></code>, these setters have no special handling of
 internal attributes names like <code>.Dim</code>, <code>.Dimnames</code> or <code>.Names</code>.</p>
-    
     <h2 class="hasAnchor" id="life-cycle"><a class="anchor" href="#life-cycle"></a>Life cycle</h2>
 
     
-    <p>These functions are deprecated since rlang 0.3.0.</p>
-    
+
+
+<p>These functions are deprecated since rlang 0.3.0.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>set_attrs</span>(<span class='no'>letters</span>, <span class='kw'>names</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>26</span>, <span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"my_chr"</span>)</div><div class='output co'>#&gt;   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 
+    <pre class="examples"><div class='input'><span class='fu'>set_attrs</span>(<span class='kw'>letters</span>, names = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>26</span>, class = <span class='st'>"my_chr"</span>)</div><div class='output co'>#&gt;   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 
 #&gt; "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" 
 #&gt;  21  22  23  24  25  26 
 #&gt; "u" "v" "w" "x" "y" "z" 
 #&gt; attr(,"class")
 #&gt; [1] "my_chr"</div><div class='input'>
 <span class='co'># Splice a list of attributes:</span>
-<span class='no'>attrs</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>attr</span> <span class='kw'>=</span> <span class='st'>"attr"</span>, <span class='kw'>names</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>26</span>, <span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"my_chr"</span>)
-<span class='no'>obj</span> <span class='kw'>&lt;-</span> <span class='fu'>set_attrs</span>(<span class='no'>letters</span>, <span class='fu'><a href='splice.html'>splice</a></span>(<span class='no'>attrs</span>))
-<span class='no'>obj</span></div><div class='output co'>#&gt;   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 
+<span class='kw'>attrs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(attr = <span class='st'>"attr"</span>, names = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>26</span>, class = <span class='st'>"my_chr"</span>)
+<span class='kw'>obj</span> <span class='op'>&lt;-</span> <span class='fu'>set_attrs</span>(<span class='kw'>letters</span>, <span class='fu'>splice</span>(<span class='kw'>attrs</span>))
+<span class='kw'>obj</span></div><div class='output co'>#&gt;   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 
 #&gt; "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" 
 #&gt;  21  22  23  24  25  26 
 #&gt; "u" "v" "w" "x" "y" "z" 
@@ -210,11 +222,11 @@ internal attributes names like <code>.Dim</code>, <code>.Dimnames</code> or <cod
 #&gt; attr(,"class")
 #&gt; [1] "my_chr"</div><div class='input'>
 <span class='co'># Zap attributes by passing a single unnamed NULL argument:</span>
-<span class='fu'>set_attrs</span>(<span class='no'>obj</span>, <span class='kw'>NULL</span>)</div><div class='output co'>#&gt;  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
-#&gt; [20] "t" "u" "v" "w" "x" "y" "z"</div><div class='input'><span class='fu'>set_attrs</span>(<span class='no'>obj</span>, !!! <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>NULL</span>))</div><div class='output co'>#&gt;  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
+<span class='fu'>set_attrs</span>(<span class='kw'>obj</span>, <span class='kw'>NULL</span>)</div><div class='output co'>#&gt;  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
+#&gt; [20] "t" "u" "v" "w" "x" "y" "z"</div><div class='input'><span class='fu'>set_attrs</span>(<span class='kw'>obj</span>, <span class='op'>!</span><span class='op'>!</span><span class='op'>!</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>NULL</span>))</div><div class='output co'>#&gt;  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
 #&gt; [20] "t" "u" "v" "w" "x" "y" "z"</div><div class='input'>
 <span class='co'># Note that set_attrs() never modifies objects in place:</span>
-<span class='no'>obj</span></div><div class='output co'>#&gt;   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 
+<span class='kw'>obj</span></div><div class='output co'>#&gt;   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 
 #&gt; "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" 
 #&gt;  21  22  23  24  25  26 
 #&gt; "u" "v" "w" "x" "y" "z" 
@@ -223,28 +235,19 @@ internal attributes names like <code>.Dim</code>, <code>.Dimnames</code> or <cod
 #&gt; attr(,"class")
 #&gt; [1] "my_chr"</div><div class='input'>
 <span class='co'># For uncopyable types, mut_attrs() lets you modify in place:</span>
-<span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='env.html'>env</a></span>()
-<span class='fu'>mut_attrs</span>(<span class='no'>env</span>, <span class='kw'>foo</span> <span class='kw'>=</span> <span class='st'>"bar"</span>)
-<span class='no'>env</span></div><div class='output co'>#&gt; &lt;environment: 0x5262158&gt;
+<span class='kw'>env</span> <span class='op'>&lt;-</span> <span class='fu'>env</span>()
+<span class='fu'>mut_attrs</span>(<span class='kw'>env</span>, foo = <span class='st'>"bar"</span>)
+<span class='kw'>env</span></div><div class='output co'>#&gt; &lt;environment: 0x7fce84efd070&gt;
 #&gt; attr(,"foo")
 #&gt; [1] "bar"</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#life-cycle">Life cycle</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -252,13 +255,16 @@ internal attributes names like <code>.Dim</code>, <code>.Dimnames</code> or <cod
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

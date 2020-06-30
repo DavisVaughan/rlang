@@ -8,21 +8,29 @@
 
 <title>Generate or handle a missing argument — missing_arg • rlang</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,8 +38,8 @@
 
 
 
-<meta property="og:title" content="Generate or handle a missing argument — missing_arg" />
 
+<meta property="og:title" content="Generate or handle a missing argument — missing_arg" />
 <meta property="og:description" content="These functions help using the missing argument as a regular R
 object.
 missing_arg() generates a missing argument.
@@ -41,8 +49,9 @@ lists.
 maybe_missing() is useful to pass down an input that might be
 missing to another function, potentially substituting by a
 default value. It avoids triggering an &quot;argument is missing&quot; error.
+
 " />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -66,9 +75,10 @@ default value. It avoids triggering an &quot;argument is missing&quot; error.
   gtag('config', 'UA-115082821-1');
 </script>
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -82,7 +92,7 @@ default value. It avoids triggering an &quot;argument is missing&quot; error.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rlang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.6.9000</span>
       </span>
     </div>
 
@@ -90,7 +100,7 @@ default value. It avoids triggering an &quot;argument is missing&quot; error.
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -109,6 +119,12 @@ default value. It avoids triggering an &quot;argument is missing&quot; error.
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Release notes</li>
     <li>
+      <a href="https://www.tidyverse.org/blog/2020/02/glue-strings-and-tidy-eval/">Version 0.4.3</a>
+    </li>
+    <li>
+      <a href="https://www.tidyverse.org/articles/2019/06/rlang-0-4-0/">Version 0.4.0</a>
+    </li>
+    <li>
       <a href="https://www.tidyverse.org/articles/2019/01/rlang-0-3-1/">Version 0.3.1</a>
     </li>
     <li>
@@ -124,11 +140,10 @@ default value. It avoids triggering an &quot;argument is missing&quot; error.
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/r-lib/rlang">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/r-lib/rlang/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -139,6 +154,7 @@ default value. It avoids triggering an &quot;argument is missing&quot; error.
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -150,26 +166,25 @@ default value. It avoids triggering an &quot;argument is missing&quot; error.
     </div>
 
     <div class="ref-description">
-    
     <p>These functions help using the missing argument as a regular R
 object.</p><ul>
 <li><p><code>missing_arg()</code> generates a missing argument.</p></li>
-<li><p><code>is_missing()</code> is like <code><a href='https://www.rdocumentation.org/packages/base/topics/missing'>base::missing()</a></code> but also supports
+<li><p><code>is_missing()</code> is like <code><a href='https://rdrr.io/r/base/missing.html'>base::missing()</a></code> but also supports
 testing for missing arguments contained in other objects like
 lists.</p></li>
 <li><p><code>maybe_missing()</code> is useful to pass down an input that might be
 missing to another function, potentially substituting by a
 default value. It avoids triggering an "argument is missing" error.</p></li>
 </ul>
-    
+
     </div>
 
     <pre class="usage"><span class='fu'>missing_arg</span>()
 
-<span class='fu'>is_missing</span>(<span class='no'>x</span>)
+<span class='fu'>is_missing</span>(<span class='kw'>x</span>)
 
-<span class='fu'>maybe_missing</span>(<span class='no'>x</span>, <span class='kw'>default</span> <span class='kw'>=</span> <span class='fu'>missing_arg</span>())</pre>
-    
+<span class='fu'>maybe_missing</span>(<span class='kw'>x</span>, default = <span class='fu'>missing_arg</span>())</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -183,22 +198,25 @@ default value. It avoids triggering an "argument is missing" error.</p></li>
 defaults to <code>missing_arg()</code>.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="other-ways-to-reify-the-missing-argument"><a class="anchor" href="#other-ways-to-reify-the-missing-argument"></a>Other ways to reify the missing argument</h2>
 
     
-    <ul>
-<li><p><code><a href='https://www.rdocumentation.org/packages/base/topics/substitute'>base::quote(expr = )</a></code> is the canonical way to create a missing
+
+<ul>
+<li><p><code><a href='https://rdrr.io/r/base/substitute.html'>base::quote(expr = )</a></code> is the canonical way to create a missing
 argument object.</p></li>
-<li><p><code><a href='quotation.html'>expr()</a></code> called without argument creates a missing argument.</p></li>
-<li><p><code><a href='quotation.html'>quo()</a></code> called without argument creates an empty quosure, i.e. a
+<li><p><code>expr()</code> called without argument creates a missing argument.</p></li>
+<li><p><code>quo()</code> called without argument creates an empty quosure, i.e. a
 quosure containing the missing argument object.</p></li>
 </ul>
-    
+
     <h2 class="hasAnchor" id="fragility-of-the-missing-argument-object"><a class="anchor" href="#fragility-of-the-missing-argument-object"></a>Fragility of the missing argument object</h2>
 
     
-    <p>The missing argument is an object that triggers an error if and
+
+
+<p>The missing argument is an object that triggers an error if and
 only if it is the result of evaluating a symbol. No error is
 produced when a function call evaluates to the missing argument
 object. This means that expressions like <code>x[[1]] &lt;- missing_arg()</code>
@@ -218,32 +236,32 @@ return the missing argument and pass it to other C functions, this
 is not the case on the R side. If you're implementing your
 meta-programming algorithm in R, use <code>maybe_missing()</code> when an
 input might be the missing argument object.</p>
-    
     <h2 class="hasAnchor" id="life-cycle"><a class="anchor" href="#life-cycle"></a>Life cycle</h2>
 
     
-    <ul>
+
+<ul>
 <li><p><code>missing_arg()</code> and <code>is_missing()</code> are stable.</p></li>
 <li><p>Like the rest of rlang, <code>maybe_missing()</code> is maturing.</p></li>
 </ul>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># The missing argument usually arises inside a function when the</span>
 <span class='co'># user omits an argument that does not have a default:</span>
-<span class='no'>fn</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'>is_missing</span>(<span class='no'>x</span>)
+<span class='kw'>fn</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>x</span>) <span class='fu'>is_missing</span>(<span class='kw'>x</span>)
 <span class='fu'>fn</span>()</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'># Creating a missing argument can also be useful to generate calls</span>
-<span class='no'>args</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fl'>1</span>, <span class='fu'>missing_arg</span>(), <span class='fl'>3</span>, <span class='fu'>missing_arg</span>())
-<span class='fu'><a href='quotation.html'>quo</a></span>(<span class='fu'>fn</span>(!!! <span class='no'>args</span>))</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;quosure&gt;</span><span>
+<span class='kw'>args</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fl'>1</span>, <span class='fu'>missing_arg</span>(), <span class='fl'>3</span>, <span class='fu'>missing_arg</span>())
+<span class='fu'>quo</span>(<span class='fu'>fn</span>(<span class='op'>!</span><span class='op'>!</span><span class='op'>!</span> <span class='kw'>args</span>))</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;quosure&gt;</span><span>
 #&gt; expr: </span><span style='color: #0000BB;'>^fn(1, , 3, )</span><span>
-#&gt; env:  </span><span style='color: #0000BB;'>0x9e01a38</span><span></div><div class='input'>
+#&gt; env:  </span><span style='color: #0000BB;'>0x7fce870d98b0</span><span></div><div class='input'>
 <span class='co'># Other ways to create that object include:</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/substitute'>quote</a></span>(<span class='kw'>expr</span> <span class='kw'>=</span> )</div><div class='output co'>#&gt; </div><div class='input'><span class='fu'><a href='quotation.html'>expr</a></span>()</div><div class='output co'>#&gt; </div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>quote</a></span>(expr = )</div><div class='output co'>#&gt; </div><div class='input'><span class='fu'>expr</span>()</div><div class='output co'>#&gt; </div><div class='input'>
 <span class='co'># It is perfectly valid to generate and assign the missing</span>
 <span class='co'># argument in a list.</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>missing_arg</span>()
-<span class='no'>l</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='fu'>missing_arg</span>())
+<span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'>missing_arg</span>()
+<span class='kw'>l</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='fu'>missing_arg</span>())
 
 <span class='co'># Just don't evaluate a symbol that contains the empty argument.</span>
 <span class='co'># Evaluating the object `x` that we created above would trigger an</span>
@@ -253,10 +271,10 @@ input might be the missing argument object.</p>
 <span class='co'># On the other hand accessing a missing argument contained in a</span>
 <span class='co'># list does not trigger an error because subsetting is a function</span>
 <span class='co'># call:</span>
-<span class='no'>l</span><span class='kw'>[[</span><span class='fl'>1</span>]]</div><div class='output co'>#&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/NULL'>is.null</a></span>(<span class='no'>l</span><span class='kw'>[[</span><span class='fl'>1</span>]])</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
+<span class='kw'>l</span>[[<span class='fl'>1</span>]]</div><div class='output co'>#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span>(<span class='kw'>l</span>[[<span class='fl'>1</span>]])</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
 <span class='co'># In case you really need to access a symbol that might contain the</span>
 <span class='co'># empty argument object, use maybe_missing():</span>
-<span class='fu'>maybe_missing</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/NULL'>is.null</a></span>(<span class='fu'>maybe_missing</span>(<span class='no'>x</span>))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>is_missing</span>(<span class='fu'>maybe_missing</span>(<span class='no'>x</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='fu'>maybe_missing</span>(<span class='kw'>x</span>)</div><div class='output co'>#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span>(<span class='fu'>maybe_missing</span>(<span class='kw'>x</span>))</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>is_missing</span>(<span class='fu'>maybe_missing</span>(<span class='kw'>x</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 
 <span class='co'># Note that base::missing() only works on symbols and does not</span>
 <span class='co'># support complex expressions. For this reason the following lines</span>
@@ -266,24 +284,15 @@ input might be the missing argument object.</p>
 <span class='co'>#&gt; missing(l[[1]])</span>
 
 <span class='co'># while is_missing() will work as expected:</span>
-<span class='fu'>is_missing</span>(<span class='fu'>missing_arg</span>())</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>is_missing</span>(<span class='no'>l</span><span class='kw'>[[</span><span class='fl'>1</span>]])</div><div class='output co'>#&gt; [1] TRUE</div></span></pre>
+<span class='fu'>is_missing</span>(<span class='fu'>missing_arg</span>())</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>is_missing</span>(<span class='kw'>l</span>[[<span class='fl'>1</span>]])</div><div class='output co'>#&gt; [1] TRUE</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#other-ways-to-reify-the-missing-argument">Other ways to reify the missing argument</a></li>
-
-      <li><a href="#fragility-of-the-missing-argument-object">Fragility of the missing argument object</a></li>
-
-      <li><a href="#life-cycle">Life cycle</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -291,13 +300,16 @@ input might be the missing argument object.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

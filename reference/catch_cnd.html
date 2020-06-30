@@ -8,21 +8,29 @@
 
 <title>Catch a condition — catch_cnd • rlang</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,13 +38,13 @@
 
 
 
-<meta property="og:title" content="Catch a condition — catch_cnd" />
 
+<meta property="og:title" content="Catch a condition — catch_cnd" />
 <meta property="og:description" content="This is a small wrapper around tryCatch() that captures any
 condition signalled while evaluating its argument. It is useful for
 situations where you expect a specific condition to be signalled,
 for debugging, and for unit testing." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -60,9 +68,10 @@ for debugging, and for unit testing." />
   gtag('config', 'UA-115082821-1');
 </script>
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -76,7 +85,7 @@ for debugging, and for unit testing." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rlang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.6.9000</span>
       </span>
     </div>
 
@@ -84,7 +93,7 @@ for debugging, and for unit testing." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -103,6 +112,12 @@ for debugging, and for unit testing." />
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Release notes</li>
     <li>
+      <a href="https://www.tidyverse.org/blog/2020/02/glue-strings-and-tidy-eval/">Version 0.4.3</a>
+    </li>
+    <li>
+      <a href="https://www.tidyverse.org/articles/2019/06/rlang-0-4-0/">Version 0.4.0</a>
+    </li>
+    <li>
       <a href="https://www.tidyverse.org/articles/2019/01/rlang-0-3-1/">Version 0.3.1</a>
     </li>
     <li>
@@ -118,11 +133,10 @@ for debugging, and for unit testing." />
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/r-lib/rlang">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/r-lib/rlang/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -133,27 +147,26 @@ for debugging, and for unit testing." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Catch a condition</h1>
-    <small class="dont-index">Source: <a href='https://github.com/r-lib/rlang/blob/master/R/cnd.R'><code>R/cnd.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/rlang/blob/master/R/cnd-handlers.R'><code>R/cnd-handlers.R</code></a></small>
     <div class="hidden name"><code>catch_cnd.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
-    <p>This is a small wrapper around <code><a href='https://www.rdocumentation.org/packages/base/topics/conditions'>tryCatch()</a></code> that captures any
+    <p>This is a small wrapper around <code><a href='https://rdrr.io/r/base/conditions.html'>tryCatch()</a></code> that captures any
 condition signalled while evaluating its argument. It is useful for
 situations where you expect a specific condition to be signalled,
 for debugging, and for unit testing.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>catch_cnd</span>(<span class='no'>expr</span>, <span class='kw'>classes</span> <span class='kw'>=</span> <span class='st'>"condition"</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>catch_cnd</span>(<span class='kw'>expr</span>, classes = <span class='st'>"condition"</span>)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -168,46 +181,37 @@ handler.</p></td>
 default, catches all conditions.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A condition if any was signalled, <code>NULL</code> otherwise.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>catch_cnd</span>(<span class='fl'>10</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='fu'>catch_cnd</span>(<span class='fu'><a href='abort.html'>abort</a></span>(<span class='st'>"an error"</span>))</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error&gt;</span><span>
-#&gt; message: </span><span style='font-style: italic;'>an error</span><span>
-#&gt; class:   `rlang_error`
-#&gt; backtrace:
-#&gt; </span><span style='color: #555555;'>  1. </span><span style='color: #BB0000;'>base::tryCatch(...)</span><span>
-#&gt; </span><span style='color: #555555;'> 13. </span><span style='color: #BB0000;'>pkgdown::build_site(...)</span><span>
-#&gt; </span><span style='color: #555555;'> 14. </span><span style='color: #BB0000;'>pkgdown:::build_site_local(...)</span><span>
-#&gt; </span><span style='color: #555555;'> 15. </span><span style='color: #BB0000;'>pkgdown::build_reference(...)</span><span>
-#&gt; </span><span style='color: #555555;'> 16. </span><span style='color: #BB0000;'>purrr::map(...)</span><span>
-#&gt; </span><span style='color: #555555;'> 17. </span><span style='color: #BB0000;'>pkgdown:::.f(.x[[i]], ...)</span><span>
-#&gt; </span><span style='color: #555555;'> 18. </span><span style='color: #BB0000;'>pkgdown:::data_reference_topic(...)</span><span>
-#&gt; </span><span style='color: #555555;'> 20. </span><span style='color: #BB0000;'>pkgdown:::as_data.tag_examples(...)</span><span>
-#&gt; </span><span style='color: #555555;'> 21. </span><span style='color: #BB0000;'>purrr::pmap_chr(...)</span><span>
-#&gt; </span><span style='color: #555555;'> 22. </span><span style='color: #BB0000;'>pkgdown:::.f(...)</span><span>
-#&gt; </span><span style='color: #555555;'> 25. </span><span style='color: #BB0000;'>evaluate::evaluate(code, env, new_device = TRUE)</span><span>
-#&gt; </span><span style='color: #555555;'> 26. </span><span style='color: #BB0000;'>evaluate:::evaluate_call(...)</span><span>
-#&gt; </span><span style='color: #555555;'> 36. </span><span style='color: #BB0000;'>[ base::eval(...) ]</span><span style='color: #555555;'> with 1 more call</span><span>
-#&gt; </span><span style='color: #555555;'> 38. </span><span style='color: #BB0000;'>rlang::catch_cnd(abort("an error"))</span><span>
-#&gt; </span><span style='color: #555555;'> 44. </span><span style='color: #BB0000;'>base::force(expr) </span><span style='color: #555555;'>/home/travis/build/r-lib/rlang/R/cnd.R:535:6</span><span>
-#&gt; </span><span style='color: #555555;'>Call `rlang::last_trace()` to see the full backtrace</span><span></div><div class='input'><span class='fu'>catch_cnd</span>(<span class='fu'><a href='cnd_signal.html'>cnd_signal</a></span>(<span class='st'>"my_condition"</span>, <span class='kw'>.msg</span> <span class='kw'>=</span> <span class='st'>"a condition"</span>))</div><div class='output co'>#&gt; &lt;simpleError in cnd_signal("my_condition", .msg = "a condition"): unused argument (.msg = "a condition")&gt;</div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>catch_cnd</span>(<span class='fl'>10</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='fu'>catch_cnd</span>(<span class='fu'>abort</span>(<span class='st'>"an error"</span>))</div><div class='output co'>#&gt; <span style='font-weight: bold;'>&lt;error/rlang_error&gt;</span><span>
+#&gt; an error
+#&gt; </span><span style='font-weight: bold;'>Backtrace:</span><span>
+#&gt; </span><span style='color: #555555;'>  1. </span><span>pkgdown::deploy_to_branch(new_process = FALSE)
+#&gt; </span><span style='color: #555555;'>  2. </span><span>pkgdown::build_site(...)
+#&gt; </span><span style='color: #555555;'>  3. </span><span>pkgdown:::build_site_local(...)
+#&gt; </span><span style='color: #555555;'>  4. </span><span>pkgdown::build_reference(...)
+#&gt; </span><span style='color: #555555;'>  5. </span><span>purrr::map(...)
+#&gt; </span><span style='color: #555555;'>  6. </span><span>pkgdown:::.f(.x[[i]], ...)
+#&gt; </span><span style='color: #555555;'>  8. </span><span>pkgdown:::data_reference_topic(...)
+#&gt; </span><span style='color: #555555;'>  9. </span><span>pkgdown:::run_examples(...)
+#&gt; </span><span style='color: #555555;'> 10. </span><span>pkgdown:::highlight_examples(code, topic, env = env)
+#&gt; </span><span style='color: #555555;'> 11. </span><span>evaluate::evaluate(x, child_env(env), new_device = TRUE)
+#&gt; </span><span style='color: #555555;'> 12. </span><span>evaluate:::evaluate_call(...)
+#&gt; </span><span style='color: #555555;'> 22. </span><span>[ base::eval(...) ]</span><span style='color: #555555;'> with 1 more call</span><span>
+#&gt; </span><span style='color: #555555;'> 24. </span><span>rlang::catch_cnd(abort("an error"))
+#&gt; </span><span style='color: #555555;'> 30. </span><span>base::force(expr)</div><div class='input'><span class='fu'>catch_cnd</span>(<span class='fu'>signal</span>(<span class='st'>"my_condition"</span>, message = <span class='st'>"a condition"</span>))</div><div class='output co'>#&gt; &lt;my_condition: a condition&gt;</div></span></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -215,13 +219,16 @@ default, catches all conditions.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

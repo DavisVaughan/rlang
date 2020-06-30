@@ -8,21 +8,29 @@
 
 <title>Parse R code — parse_expr • rlang</title>
 
+
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,12 +38,12 @@
 
 
 
-<meta property="og:title" content="Parse R code — parse_expr" />
 
+<meta property="og:title" content="Parse R code — parse_expr" />
 <meta property="og:description" content="These functions parse and transform text into R expressions. This
 is the first step to interpret or evaluate a piece of R code
 written by a programmer." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -59,9 +67,10 @@ written by a programmer." />
   gtag('config', 'UA-115082821-1');
 </script>
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -75,7 +84,7 @@ written by a programmer." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rlang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.6.9000</span>
       </span>
     </div>
 
@@ -83,7 +92,7 @@ written by a programmer." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -102,6 +111,12 @@ written by a programmer." />
   <ul class="dropdown-menu" role="menu">
     <li class="dropdown-header">Release notes</li>
     <li>
+      <a href="https://www.tidyverse.org/blog/2020/02/glue-strings-and-tidy-eval/">Version 0.4.3</a>
+    </li>
+    <li>
+      <a href="https://www.tidyverse.org/articles/2019/06/rlang-0-4-0/">Version 0.4.0</a>
+    </li>
+    <li>
       <a href="https://www.tidyverse.org/articles/2019/01/rlang-0-3-1/">Version 0.3.1</a>
     </li>
     <li>
@@ -117,11 +132,10 @@ written by a programmer." />
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/r-lib/rlang">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/r-lib/rlang/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -132,6 +146,7 @@ written by a programmer." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -143,21 +158,15 @@ written by a programmer." />
     </div>
 
     <div class="ref-description">
-    
     <p>These functions parse and transform text into R expressions. This
 is the first step to interpret or evaluate a piece of R code
 written by a programmer.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>parse_expr</span>(<span class='no'>x</span>)
+    <pre class="usage"><span class='fu'>parse_expr</span>(<span class='kw'>x</span>)
 
-<span class='fu'>parse_exprs</span>(<span class='no'>x</span>)
+<span class='fu'>parse_exprs</span>(<span class='kw'>x</span>)</pre>
 
-<span class='fu'>parse_quo</span>(<span class='no'>x</span>, <span class='no'>env</span>)
-
-<span class='fu'>parse_quos</span>(<span class='no'>x</span>, <span class='no'>env</span>)</pre>
-    
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -168,48 +177,27 @@ written by a programmer.</p>
 for instance to a file. If the supplied connection is not open,
 it will be automatically closed and destroyed.</p></td>
     </tr>
-    <tr>
-      <th>env</th>
-      <td><p>The environment for the quosures. Depending on the use
-case, a good default might be the <a href='search_envs.html'>global environment</a> but you might also want to evaluate the
-R code in an isolated context (perhaps a child of the global
-environment or of the <a href='search_envs.html'>base environment</a>).</p></td>
-    </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>parse_expr()</code> returns an <a href='is_expression.html'>expression</a>,
+    <p><code>parse_expr()</code> returns an expression,
 <code>parse_exprs()</code> returns a list of expressions. Note that for the
 plural variants the length of the output may be greater than the
 length of the input. This would happen is one of the strings
-contain several expressions (such as <code>"foo; bar"</code>).</p>
-    
+contain several expressions (such as <code>"foo; bar"</code>). The names of
+<code>x</code> are preserved (and recycled in case of multiple expressions).</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>parse_expr()</code> returns one expression. If the text contains more
 than one expression (separated by semicolons or new lines), an error is
 issued. On the other hand <code>parse_exprs()</code> can handle multiple
 expressions. It always returns a list of expressions (compare to
-<code><a href='https://www.rdocumentation.org/packages/base/topics/parse'>base::parse()</a></code> which returns a base::expression vector). All
+<code><a href='https://rdrr.io/r/base/parse.html'>base::parse()</a></code> which returns a base::expression vector). All
 functions also support R connections.</p>
-<p>The versions suffixed with <code>_quo</code> and <code>_quos</code> return
-<a href='quotation.html'>quosures</a> rather than raw expressions.</p>
-    
-    <h2 class="hasAnchor" id="life-cycle"><a class="anchor" href="#life-cycle"></a>Life cycle</h2>
-
-    
-    <ul>
-<li><p><code><a href='parse_quosure.html'>parse_quosure()</a></code> and <code><a href='parse_quosure.html'>parse_quosures()</a></code> were soft-deprecated in
-rlang 0.2.0 and renamed to <code>parse_quo()</code> and <code>parse_quos()</code>. This
-is consistent with the rule that abbreviated suffixes indicate
-the return type of a function.</p></li>
-</ul>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://www.rdocumentation.org/packages/base/topics/parse'>base::parse()</a></code></p></div>
-    
+    <div class='dont-index'><p><code><a href='https://rdrr.io/r/base/parse.html'>base::parse()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># parse_expr() can parse any R expression:</span>
@@ -224,13 +212,23 @@ the return type of a function.</p></li>
 #&gt; [[3]]
 #&gt; foo(bar)
 #&gt; </div><div class='input'>
+<span class='co'># Use names to figure out which input produced an expression:</span>
+<span class='fu'>parse_exprs</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(foo = <span class='st'>"1; 2"</span>, bar = <span class='st'>"3"</span>))</div><div class='output co'>#&gt; $foo
+#&gt; [1] 1
+#&gt; 
+#&gt; $foo
+#&gt; [1] 2
+#&gt; 
+#&gt; $bar
+#&gt; [1] 3
+#&gt; </div><div class='input'>
 <span class='co'># You can also parse source files by passing a R connection. Let's</span>
 <span class='co'># create a file containing R code:</span>
-<span class='no'>path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempfile</a></span>(<span class='st'>"my-file.R"</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/cat'>cat</a></span>(<span class='st'>"1; 2; mtcars"</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='no'>path</span>)
+<span class='kw'>path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='st'>"my-file.R"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='st'>"1; 2; mtcars"</span>, file = <span class='kw'>path</span>)
 
 <span class='co'># We can now parse it by supplying a connection:</span>
-<span class='fu'>parse_exprs</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/connections'>file</a></span>(<span class='no'>path</span>))</div><div class='output co'>#&gt; [[1]]
+<span class='fu'>parse_exprs</span>(<span class='fu'><a href='https://rdrr.io/r/base/connections.html'>file</a></span>(<span class='kw'>path</span>))</div><div class='output co'>#&gt; [[1]]
 #&gt; [1] 1
 #&gt; 
 #&gt; [[2]]
@@ -240,24 +238,13 @@ the return type of a function.</p></li>
 #&gt; mtcars
 #&gt; </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#life-cycle">Life cycle</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -265,13 +252,16 @@ the return type of a function.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
