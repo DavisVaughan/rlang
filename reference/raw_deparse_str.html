@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Return the closure environment of a function — fn_env • rlang</title>
+<title>Serialize a raw vector to a string — raw_deparse_str • rlang</title>
 
 
 <!-- jquery -->
@@ -39,12 +39,13 @@
 
 
 
-<meta property="og:title" content="Return the closure environment of a function — fn_env" />
-<meta property="og:description" content="Closure environments define the scope of functions (see env()).
-When a function call is evaluated, R creates an evaluation frame
-(see ctxt_stack()) that inherits from the closure environment.
-This makes all objects defined in the closure environment and all
-its parents available to code executed within the function." />
+<meta property="og:title" content="Serialize a raw vector to a string — raw_deparse_str" />
+<meta property="og:description" content="
+This function converts a raw vector to a hexadecimal string,
+optionally adding a prefix and a suffix.
+It is roughly equivalent to
+paste0(prefix, paste(format(x), collapse = &quot;&quot;), suffix)
+and much faster." />
 
 
 
@@ -154,48 +155,41 @@ its parents available to code executed within the function." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Return the closure environment of a function</h1>
-    <small class="dont-index">Source: <a href='https://github.com/r-lib/rlang/blob/master/R/fn.R'><code>R/fn.R</code></a></small>
-    <div class="hidden name"><code>fn_env.Rd</code></div>
+    <h1>Serialize a raw vector to a string</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/rlang/blob/master/R/raw.R'><code>R/raw.R</code></a></small>
+    <div class="hidden name"><code>raw_deparse_str.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Closure environments define the scope of functions (see <code><a href='env.html'>env()</a></code>).
-When a function call is evaluated, R creates an evaluation frame
-(see <code><a href='stack.html'>ctxt_stack()</a></code>) that inherits from the closure environment.
-This makes all objects defined in the closure environment and all
-its parents available to code executed within the function.</p>
+    <p><a href='https://www.tidyverse.org/lifecycle/#experimental'><img src='figures/lifecycle-experimental.svg' alt='Experimental lifecycle'></a></p>
+<p>This function converts a raw vector to a hexadecimal string,
+optionally adding a prefix and a suffix.
+It is roughly equivalent to
+<code><a href='https://rdrr.io/r/base/paste.html'>paste0(prefix, paste(format(x), collapse = ""), suffix)</a></code>
+and much faster.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fn_env</span>(<span class='no'>fn</span>)
-
-<span class='fu'>fn_env</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+    <pre class="usage"><span class='fu'>raw_deparse_str</span>(<span class='no'>x</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>suffix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>fn, x</th>
-      <td><p>A function.</p></td>
+      <th>x</th>
+      <td><p>A raw vector.</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>A new closure environment for the function.</p></td>
+      <th>prefix, suffix</th>
+      <td><p>Prefix and suffix strings, or `NULL.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>fn_env()</code> returns the closure environment of <code>fn</code>. There is also
-an assignment method to set a new closure environment.</p>
+    <p>A string.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='env.html'>child_env</a></span>(<span class='st'>"base"</span>)
-<span class='no'>fn</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='with_env.html'>with_env</a></span>(<span class='no'>env</span>, <span class='kw'>function</span>() <span class='kw'>NULL</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span>(<span class='fu'>fn_env</span>(<span class='no'>fn</span>), <span class='no'>env</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
-<span class='no'>other_env</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='env.html'>child_env</a></span>(<span class='st'>"base"</span>)
-<span class='fu'>fn_env</span>(<span class='no'>fn</span>) <span class='kw'>&lt;-</span> <span class='no'>other_env</span>
-<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span>(<span class='fu'>fn_env</span>(<span class='no'>fn</span>), <span class='no'>other_env</span>)</div><div class='output co'>#&gt; [1] TRUE</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>raw_deparse_str</span>(<span class='fu'><a href='https://rdrr.io/r/base/raw.html'>raw</a></span>())</div><div class='output co'>#&gt; [1] ""</div><div class='input'><span class='fu'>raw_deparse_str</span>(<span class='fu'><a href='https://rdrr.io/r/base/rawConversion.html'>charToRaw</a></span>(<span class='st'>"string"</span>))</div><div class='output co'>#&gt; [1] "737472696e67"</div><div class='input'><span class='fu'>raw_deparse_str</span>(<span class='fu'><a href='https://rdrr.io/r/base/raw.html'>raw</a></span>(<span class='fl'>10</span>), <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"'0x"</span>, <span class='kw'>suffix</span> <span class='kw'>=</span> <span class='st'>"'"</span>)</div><div class='output co'>#&gt; [1] "'0x00000000000000000000'"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
