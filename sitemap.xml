@@ -151,6 +151,9 @@
     <loc>https://rlang.r-lib.org/reference/env_binding_lock.html</loc>
   </url>
   <url>
+    <loc>https://rlang.r-lib.org/reference/env_browse.html</loc>
+  </url>
+  <url>
     <loc>https://rlang.r-lib.org/reference/env_bury.html</loc>
   </url>
   <url>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a call — lang • rlang</title>
+<title>Browse environments — env_browse • rlang</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,16 @@
 
 
 
-<meta property="og:title" content="Create a call — lang" />
+<meta property="og:title" content="Browse environments — env_browse" />
 <meta property="og:description" content="
-These functions are deprecated, please use call2() and
-new_call() instead." />
+
+env_browse(env) is equivalent to evaluating browser() in
+env. It persistently sets the environment for step-debugging.
+Supply value = FALSE to disable browsing.
+env_is_browsed() is a predicate that inspects whether an
+environment is being browsed.
+
+" />
 
 
 
@@ -152,41 +158,44 @@ new_call() instead." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a call</h1>
-    <small class="dont-index">Source: <a href='https://github.com/r-lib/rlang/blob/master/R/lifecycle-retired.R'><code>R/lifecycle-retired.R</code></a></small>
-    <div class="hidden name"><code>lang.Rd</code></div>
+    <h1>Browse environments</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/rlang/blob/master/R/env.R'><code>R/env.R</code></a></small>
+    <div class="hidden name"><code>env_browse.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><img src='figures/lifecycle-deprecated.svg' alt='Deprecated lifecycle' /></p>
-<p>These functions are deprecated, please use <code><a href='call2.html'>call2()</a></code> and
-<code><a href='new_call.html'>new_call()</a></code> instead.</p>
+    
+<ul>
+<li><p><code>env_browse(env)</code> is equivalent to evaluating <code><a href='https://rdrr.io/r/base/browser.html'>browser()</a></code> in
+<code>env</code>. It persistently sets the environment for step-debugging.
+Supply <code>value = FALSE</code> to disable browsing.</p></li>
+<li><p><code>env_is_browsed()</code> is a predicate that inspects whether an
+environment is being browsed.</p></li>
+</ul>
+
     </div>
 
-    <pre class="usage"><span class='fu'>lang</span><span class='op'>(</span><span class='va'>.fn</span>, <span class='va'>...</span>, .ns <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>env_browse</span><span class='op'>(</span><span class='va'>env</span>, value <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='fu'>new_language</span><span class='op'>(</span><span class='va'>head</span>, tail <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+<span class='fu'>env_is_browsed</span><span class='op'>(</span><span class='va'>env</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>.fn</th>
-      <td><p>Function to call. Must be a callable object: a string,
-symbol, call, or a function.</p></td>
+      <th>env</th>
+      <td><p>An environment.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>&lt;<a href='dyn-dots.html'>dynamic</a>&gt; Arguments for the function
-call. Empty arguments are preserved.</p></td>
-    </tr>
-    <tr>
-      <th>.ns</th>
-      <td><p>Namespace with which to prefix <code>.fn</code>. Must be a string
-or symbol.</p></td>
+      <th>value</th>
+      <td><p>Whether to browse <code>env</code>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>env_browse()</code> returns the previous value of
+<code>env_is_browsed()</code> (a logical), invisibly.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
