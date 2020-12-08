@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Return the closure environment of a function — fn_env • rlang</title>
+<title>Inject objects in an R expression — inject • rlang</title>
 
 
 <!-- jquery -->
@@ -39,12 +39,9 @@
 
 
 
-<meta property="og:title" content="Return the closure environment of a function — fn_env" />
-<meta property="og:description" content="Closure environments define the scope of functions (see env()).
-When a function call is evaluated, R creates an evaluation frame
-(see ctxt_stack()) that inherits from the closure environment.
-This makes all objects defined in the closure environment and all
-its parents available to code executed within the function." />
+<meta property="og:title" content="Inject objects in an R expression — inject" />
+<meta property="og:description" content="inject() evaluates an expression with injection
+(unquotation) support. There are three main usages:" />
 
 
 
@@ -154,50 +151,68 @@ its parents available to code executed within the function." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Return the closure environment of a function</h1>
-    <small class="dont-index">Source: <a href='https://github.com/r-lib/rlang/blob/master/R/fn.R'><code>R/fn.R</code></a></small>
-    <div class="hidden name"><code>fn_env.Rd</code></div>
+    <h1>Inject objects in an R expression</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/rlang/blob/master/R/eval.R'><code>R/eval.R</code></a></small>
+    <div class="hidden name"><code>inject.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Closure environments define the scope of functions (see <code><a href='env.html'>env()</a></code>).
-When a function call is evaluated, R creates an evaluation frame
-(see <code><a href='stack.html'>ctxt_stack()</a></code>) that inherits from the closure environment.
-This makes all objects defined in the closure environment and all
-its parents available to code executed within the function.</p>
+    <p><code>inject()</code> evaluates an expression with <a href='nse-force.html'>injection</a>
+(unquotation) support. There are three main usages:</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fn_env</span><span class='op'>(</span><span class='va'>fn</span><span class='op'>)</span>
-
-<span class='fu'>fn_env</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span></pre>
+    <pre class="usage"><span class='fu'>inject</span><span class='op'>(</span><span class='va'>expr</span>, env <span class='op'>=</span> <span class='fu'><a href='caller_env.html'>caller_env</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>fn, x</th>
-      <td><p>A function.</p></td>
+      <th>expr</th>
+      <td><p>An argument to evaluate. This argument is immediately
+evaluated in <code>env</code> (the current environment by default) with
+injected objects and expressions.</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>A new closure environment for the function.</p></td>
+      <th>env</th>
+      <td><p>The environment in which to evaluate <code>expr</code>. Defaults to
+the current environment. For expert use only.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>fn_env()</code> returns the closure environment of <code>fn</code>. There is also
-an assignment method to set a new closure environment.</p>
+    
+<ul>
+<li><p><a href='nse-force.html'>Splicing</a> lists of arguments in a function call.</p></li>
+<li><p>Inline objects or other expressions in an expression with <code>!!</code>
+and <code>!!!</code>. For instance to create functions or formulas
+programmatically.</p></li>
+<li><p>Pass arguments to NSE functions that <a href='nse-defuse.html'>defuse</a> their
+arguments without injection support (see for instance
+<code><a href='enquo0.html'>enquo0()</a></code>). You can use <code>{{ arg }}</code> with functions documented
+to support quosures. Otherwise, use <code>!!enexpr(arg)</code>.</p></li>
+</ul>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>env</span> <span class='op'>&lt;-</span> <span class='fu'><a href='env.html'>child_env</a></span><span class='op'>(</span><span class='st'>"base"</span><span class='op'>)</span>
-<span class='va'>fn</span> <span class='op'>&lt;-</span> <span class='fu'><a href='with_env.html'>with_env</a></span><span class='op'>(</span><span class='va'>env</span>, <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='cn'>NULL</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span><span class='fu'>fn_env</span><span class='op'>(</span><span class='va'>fn</span><span class='op'>)</span>, <span class='va'>env</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
-<span class='va'>other_env</span> <span class='op'>&lt;-</span> <span class='fu'><a href='env.html'>child_env</a></span><span class='op'>(</span><span class='st'>"base"</span><span class='op'>)</span>
-<span class='fu'>fn_env</span><span class='op'>(</span><span class='va'>fn</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>other_env</span>
-<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span><span class='fu'>fn_env</span><span class='op'>(</span><span class='va'>fn</span><span class='op'>)</span>, <span class='va'>other_env</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] TRUE</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># inject() simply evaluates its argument with injection</span>
+<span class='co'># support. These expressions are equivalent:</span>
+<span class='fl'>2</span> <span class='op'>*</span> <span class='fl'>3</span>
+</div><div class='output co'>#&gt; [1] 6</div><div class='input'><span class='fu'>inject</span><span class='op'>(</span><span class='fl'>2</span> <span class='op'>*</span> <span class='fl'>3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 6</div><div class='input'><span class='fu'>inject</span><span class='op'>(</span><span class='op'>!</span><span class='op'>!</span><span class='fl'>2</span> <span class='op'>*</span> <span class='op'>!</span><span class='op'>!</span><span class='fl'>3</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 6</div><div class='input'>
+<span class='co'># Injection with `!!` can be useful to insert objects or</span>
+<span class='co'># expressions within other expressions, like formulas:</span>
+<span class='va'>lhs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sym.html'>sym</a></span><span class='op'>(</span><span class='st'>"foo"</span><span class='op'>)</span>
+<span class='va'>rhs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sym.html'>sym</a></span><span class='op'>(</span><span class='st'>"bar"</span><span class='op'>)</span>
+<span class='fu'>inject</span><span class='op'>(</span><span class='op'>!</span><span class='op'>!</span><span class='va'>lhs</span> <span class='op'>~</span> <span class='op'>!</span><span class='op'>!</span><span class='va'>rhs</span> <span class='op'>+</span> <span class='fl'>10</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; foo ~ bar + 10
+#&gt; &lt;environment: 0x7fa8c614d190&gt;</div><div class='input'>
+<span class='co'># Injection with `!!!` splices lists of arguments in function</span>
+<span class='co'># calls:</span>
+<span class='va'>args</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>na.rm <span class='op'>=</span> <span class='cn'>TRUE</span>, finite <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span>
+<span class='fu'>inject</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='op'>!</span><span class='op'>!</span><span class='op'>!</span><span class='va'>args</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 5.5</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -94,7 +94,7 @@ to create custom interrupt condition objects." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rlang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.8.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9.9000</span>
       </span>
     </div>
 
@@ -189,7 +189,7 @@ to create custom interrupt condition objects.</p>
   <span class='va'>...</span>,
   trace <span class='op'>=</span> <span class='cn'>NULL</span>,
   parent <span class='op'>=</span> <span class='cn'>NULL</span>,
-  <span class='va'>.subclass</span>
+  .subclass <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Deprecated.html'>deprecated</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span>
 
 <span class='fu'>warn</span><span class='op'>(</span>
@@ -198,7 +198,7 @@ to create custom interrupt condition objects.</p>
   <span class='va'>...</span>,
   .frequency <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"always"</span>, <span class='st'>"regularly"</span>, <span class='st'>"once"</span><span class='op'>)</span>,
   .frequency_id <span class='op'>=</span> <span class='cn'>NULL</span>,
-  <span class='va'>.subclass</span>
+  .subclass <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Deprecated.html'>deprecated</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span>
 
 <span class='fu'>inform</span><span class='op'>(</span>
@@ -208,10 +208,10 @@ to create custom interrupt condition objects.</p>
   .file <span class='op'>=</span> <span class='cn'>NULL</span>,
   .frequency <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"always"</span>, <span class='st'>"regularly"</span>, <span class='st'>"once"</span><span class='op'>)</span>,
   .frequency_id <span class='op'>=</span> <span class='cn'>NULL</span>,
-  <span class='va'>.subclass</span>
+  .subclass <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Deprecated.html'>deprecated</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span>
 
-<span class='fu'>signal</span><span class='op'>(</span><span class='va'>message</span>, <span class='va'>class</span>, <span class='va'>...</span>, <span class='va'>.subclass</span><span class='op'>)</span>
+<span class='fu'>signal</span><span class='op'>(</span><span class='va'>message</span>, <span class='va'>class</span>, <span class='va'>...</span>, .subclass <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Deprecated.html'>deprecated</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='fu'>interrupt</span><span class='op'>(</span><span class='op'>)</span></pre>
 
@@ -220,11 +220,17 @@ to create custom interrupt condition objects.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>message</th>
-      <td><p>The message to display.</p>
-<p>If not supplied, it is expected that the message is generated
-lazily through <a href='cnd_message.html'>conditionMessage()</a>. In that case,
-<code>class</code> must be supplied. Only <code>inform()</code> allows empty messages
-as it is occasionally useful to build user output incrementally.</p></td>
+      <td><p>The message to display. Character vectors are
+formatted with <code><a href='format_error_bullets.html'>format_error_bullets()</a></code>. The first element
+defines a message header and the rest of the vector defines
+bullets. Bullets named <code>i</code> and <code>x</code> define info and error bullets
+respectively, with special Unicode and colour formatting applied
+if possible.</p>
+<p>If a message is not supplied, it is expected that the message is
+generated lazily through <a href='cnd_message.html'>conditionMessage()</a>. In
+that case, <code>class</code> must be supplied. Only <code>inform()</code> allows empty
+messages as it is occasionally useful to build user output
+incrementally.</p></td>
     </tr>
     <tr>
       <th>class</th>
@@ -271,7 +277,10 @@ connection or character string which will be passed to <code><a href='https://rd
 <p>By default, <code>inform()</code> prints to standard output in interactive
 sessions and standard error otherwise. This way IDEs can treat
 messages distinctly from warnings and errors, and R scripts can
-still filter out the messages easily by redirecting <code>stderr</code>.</p></td>
+still filter out the messages easily by redirecting <code>stderr</code>. If
+a sink is active, either on output or on messages, messages are
+printed to <code>stderr</code>. This ensures consistency of behaviour in
+interactive and non-interactive sessions.</p></td>
     </tr>
     </table>
 
