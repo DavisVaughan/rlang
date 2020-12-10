@@ -4086,6 +4086,10 @@ XXH3_update(XXH3_state_t* state,
          */
         if (state->bufferedSize) {
             size_t const loadSize = XXH3_INTERNALBUFFER_SIZE - state->bufferedSize;
+            if (loadSize > XXH3_INTERNALBUFFER_SIZE) {
+               /* Integer underflow. Should never happen unless the state was modified externally. */
+               return XXH_ERROR;
+            }
             XXH_memcpy(state->buffer + state->bufferedSize, input, loadSize);
             input += loadSize;
             XXH3_consumeStripes(state->acc,
