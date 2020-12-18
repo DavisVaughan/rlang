@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rlang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.9.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -132,7 +132,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/r-lib/rlang/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -153,10 +153,17 @@
       <small>Source: <a href='https://github.com/r-lib/rlang/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="rlang-development-version" class="section level1">
-<h1 class="page-header" data-toc-text="development version">
-<a href="#rlang-development-version" class="anchor"></a>rlang (development version)<small> Unreleased </small>
+    <div id="rlang-0410" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.10">
+<a href="#rlang-0410" class="anchor"></a>rlang 0.4.10<small> Unreleased </small>
 </h1>
+<ul>
+<li><p>New <code><a href="../reference/hash.html">hash()</a></code> function to generate 128-bit hashes for arbitrary R objects using the xxHash library. The implementation is modeled after <a href="https://github.com/coolbutuseless/xxhashlite">xxhashlite</a>, created by <a href='https://github.com/coolbutuseless'>@coolbutuseless</a>.</p></li>
+<li><p>New <code><a href="../reference/is_installed.html">check_installed()</a></code> function. Unlike <code><a href="../reference/is_installed.html">is_installed()</a></code>, it asks the user whether to install missing packages. If the user accepts, the packages are installed with <code><a href="http://pak.r-lib.org/reference/pkg_install.html">pak::pkg_install()</a></code> if available, or <code><a href="https://rdrr.io/r/utils/install.packages.html">utils::install.packages()</a></code> otherwise. If the session is non interactive or if the user chooses not to install the packages, the current evaluation is aborted (<a href='https://github.com/r-lib/rlang/issues/1075'>#1075</a>).</p></li>
+<li><p>rlang is now licensed as MIT (<a href='https://github.com/r-lib/rlang/issues/1063'>#1063</a>).</p></li>
+<li><p>Fixed an issue causing extra empty lines in <code><a href="../reference/abort.html">inform()</a></code> messages with <code>.frequency</code> (<a href='https://github.com/r-lib/rlang/issues/1076'>#1076</a>, <a href='https://github.com/schloerke'>@schloerke</a>).</p></li>
+<li><p><code><a href="../reference/expr_print.html">expr_deparse()</a></code> now correctly wraps code using <code><a href="https://rdrr.io/r/base/ns-dblcolon.html">::</a></code> and <code><a href="https://rdrr.io/r/base/ns-dblcolon.html">:::</a></code> (<a href='https://github.com/r-lib/rlang/issues/1072'>#1072</a>, <a href='https://github.com/krlmlr'>@krlmlr</a>).</p></li>
+</ul>
 </div>
     <div id="rlang-049" class="section level1">
 <h1 class="page-header" data-toc-text="0.4.9">
