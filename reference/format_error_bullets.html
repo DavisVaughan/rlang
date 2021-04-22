@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Format bullets for error messages — format_error_bullets • rlang</title>
+<title>Format error bullets — format_error_bullets • rlang</title>
 
 
 <!-- jquery -->
@@ -39,24 +39,9 @@
 
 
 
-<meta property="og:title" content="Format bullets for error messages — format_error_bullets" />
-<meta property="og:description" content="format_error_bullets() takes a character vector and returns a single
-string (or an empty vector if the input is empty). The elements of
-the input vector are assembled as a list of bullets, depending on
-their names:
-Elements named &quot;i&quot; are bulleted with a blue &quot;info&quot; symbol.
-Elements named &quot;x&quot; are bulleted with a red &quot;cross&quot; symbol.
-Unnamed elements are bulleted with a &quot;*&quot; symbol.
-
-
-This experimental infrastructure is based on the idea that
-sentences in error messages are best kept short and simple. From
-this point of view, the best way to present the information is in
-the cnd_body() method of an error conditon, as a bullet list of
-simple sentences containing a single clause. The info and cross
-symbols of the bullets provide hints on how to interpret the bullet
-relative to the general error issue, which should be supplied as
-cnd_header()." />
+<meta property="og:title" content="Format error bullets — format_error_bullets" />
+<meta property="og:description" content="
+format_error_bullets() has been renamed to format_bullets()." />
 
 
 
@@ -98,7 +83,7 @@ cnd_header()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rlang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10.9002</span>
       </span>
     </div>
 
@@ -166,29 +151,14 @@ cnd_header()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Format bullets for error messages</h1>
-    <small class="dont-index">Source: <a href='https://github.com/r-lib/rlang/blob/master/R/cnd-message.R'><code>R/cnd-message.R</code></a></small>
+    <h1>Format error bullets</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/rlang/blob/master/R/lifecycle-retired.R'><code>R/lifecycle-retired.R</code></a></small>
     <div class="hidden name"><code>format_error_bullets.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>format_error_bullets()</code> takes a character vector and returns a single
-string (or an empty vector if the input is empty). The elements of
-the input vector are assembled as a list of bullets, depending on
-their names:</p><ul>
-<li><p>Elements named <code>"i"</code> are bulleted with a blue "info" symbol.</p></li>
-<li><p>Elements named <code>"x"</code> are bulleted with a red "cross" symbol.</p></li>
-<li><p>Unnamed elements are bulleted with a "*" symbol.</p></li>
-</ul>
-
-<p>This experimental infrastructure is based on the idea that
-sentences in error messages are best kept short and simple. From
-this point of view, the best way to present the information is in
-the <code><a href='cnd_message.html'>cnd_body()</a></code> method of an error conditon, as a bullet list of
-simple sentences containing a single clause. The info and cross
-symbols of the bullets provide hints on how to interpret the bullet
-relative to the general error issue, which should be supplied as
-<code><a href='cnd_message.html'>cnd_header()</a></code>.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#deprecated'><img src='figures/lifecycle-deprecated.svg' alt='[Deprecated]' /></a>
+<code>format_error_bullets()</code> has been renamed to <code><a href='format_bullets.html'>format_bullets()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>format_error_bullets</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
@@ -198,8 +168,9 @@ relative to the general error issue, which should be supplied as
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A named character vector of messages. Elements named as
-<code>x</code> or <code>i</code> are prefixed with the corresponding bullet.</p></td>
+      <td><p>A named character vector of messages. Named elements are
+prefixed with the corresponding bullet. Elements named with a
+single space <code>" "</code> trigger a line break from the previous bullet.</p></td>
     </tr>
     </table>
 

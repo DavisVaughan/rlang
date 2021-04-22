@@ -13,10 +13,16 @@
     <loc>https://rlang.r-lib.org/reference/arg_match.html</loc>
   </url>
   <url>
+    <loc>https://rlang.r-lib.org/reference/arg_require.html</loc>
+  </url>
+  <url>
     <loc>https://rlang.r-lib.org/reference/as_box.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/as_bytes.html</loc>
+  </url>
+  <url>
+    <loc>https://rlang.r-lib.org/reference/as_closure.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/as_data_mask.html</loc>
@@ -40,9 +46,6 @@
     <loc>https://rlang.r-lib.org/reference/as_overscope.html</loc>
   </url>
   <url>
-    <loc>https://rlang.r-lib.org/reference/as_pairlist.html</loc>
-  </url>
-  <url>
     <loc>https://rlang.r-lib.org/reference/as_quosure.html</loc>
   </url>
   <url>
@@ -50,6 +53,9 @@
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/as_utf8_character.html</loc>
+  </url>
+  <url>
+    <loc>https://rlang.r-lib.org/reference/bang-bang.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/bare-type-predicates.html</loc>
@@ -68,6 +74,9 @@
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/call_inspect.html</loc>
+  </url>
+  <url>
+    <loc>https://rlang.r-lib.org/reference/call_match.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/call_modify.html</loc>
@@ -113,9 +122,6 @@
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/done.html</loc>
-  </url>
-  <url>
-    <loc>https://rlang.r-lib.org/reference/dots_definitions.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/dots_n.html</loc>
@@ -244,6 +250,9 @@
     <loc>https://rlang.r-lib.org/reference/fn_fmls.html</loc>
   </url>
   <url>
+    <loc>https://rlang.r-lib.org/reference/format_bullets.html</loc>
+  </url>
+  <url>
     <loc>https://rlang.r-lib.org/reference/format_error_bullets.html</loc>
   </url>
   <url>
@@ -284,6 +293,9 @@
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/is_copyable.html</loc>
+  </url>
+  <url>
+    <loc>https://rlang.r-lib.org/reference/is_dictionaryish.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/is_empty.html</loc>
@@ -358,9 +370,6 @@
     <loc>https://rlang.r-lib.org/reference/last_error.html</loc>
   </url>
   <url>
-    <loc>https://rlang.r-lib.org/reference/lifecycle.html</loc>
-  </url>
-  <url>
     <loc>https://rlang.r-lib.org/reference/list2.html</loc>
   </url>
   <url>
@@ -412,10 +421,7 @@
     <loc>https://rlang.r-lib.org/reference/nse-defuse.html</loc>
   </url>
   <url>
-    <loc>https://rlang.r-lib.org/reference/nse-force.html</loc>
-  </url>
-  <url>
-    <loc>https://rlang.r-lib.org/reference/op-definition.html</loc>
+    <loc>https://rlang.r-lib.org/reference/obj_address.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/op-get-attr.html</loc>
@@ -500,9 +506,6 @@
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/set_names.html</loc>
-  </url>
-  <url>
-    <loc>https://rlang.r-lib.org/reference/sexp_address.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/splice.html</loc>

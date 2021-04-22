@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rlang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10.9002</span>
       </span>
     </div>
 
@@ -158,8 +158,42 @@
 <a href="#rlang-development-version" class="anchor"></a>rlang (development version)<small> Unreleased </small>
 </h1>
 <ul>
+<li><p><code>compat-purrr.R</code> now longer includes <code>pluck*</code> helpers; these used a defintion of pluck that predated purrr (<a href='https://github.com/r-lib/rlang/issues/1159'>#1159</a>). <code>*_cpl()</code> has also been removed. The <code>map*</code> wrappers now call <code><a href="../reference/as_function.html">as_function()</a></code> so that you can pass short anonymous functions that use <code><a href="https://rdrr.io/r/base/tilde.html">~</a></code> (<a href='https://github.com/r-lib/rlang/issues/1157'>#1157</a>).</p></li>
+<li>
+<p>New <code><a href="../reference/call_match.html">call_match()</a></code> function. It is like <code><a href="https://rdrr.io/r/base/match.call.html">match.call()</a></code> but also supports matching missing arguments to their defaults in the function definition (<a href='https://github.com/r-lib/rlang/issues/875'>#875</a>).</p>
+<p><code><a href="../reference/call_standardise.html">call_standardise()</a></code> is deprecated in favour of <code><a href="../reference/call_match.html">call_match()</a></code>.</p>
+</li>
+<li><p><code><a href="../reference/is_installed.html">is_installed()</a></code> and <code><a href="../reference/is_installed.html">check_installed()</a></code> gain a <code>version</code> argument (<a href='https://github.com/r-lib/rlang/issues/1165'>#1165</a>).</p></li>
+<li><p><code><a href="../reference/expr_print.html">expr_deparse()</a></code> now properly escapes <code>\</code> characters in symbols, argument names, and vector names (<a href='https://github.com/r-lib/rlang/issues/1160'>#1160</a>).</p></li>
+<li><p><code>friendly_type_of()</code> (from <code>compat-friendly-type.R</code>) now supports matrices and arrays (<a href='https://github.com/r-lib/rlang/issues/141'>#141</a>).</p></li>
+<li><p><code><a href="../reference/friendly_type.html">friendly_type()</a></code> is deprecated and <code>as_pairlist()</code> is defunct.</p></li>
+<li><p>Updated <code><a href="../reference/env_print.html">env_print()</a></code> to use <code><a href="../reference/format_bullets.html">format_bullets()</a></code> and consistent tidyverse style (<a href='https://github.com/r-lib/rlang/issues/1154'>#1154</a>).</p></li>
+<li><p><code><a href="../reference/set_names.html">set_names()</a></code> now recycles names of size 1 to the size of the input, following the tidyverse recycling rules.</p></li>
+<li><p><code><a href="../reference/format_error_bullets.html">format_error_bullets()</a></code> has been renamed to <code><a href="../reference/format_bullets.html">format_bullets()</a></code>.</p></li>
+<li>
+<p><code><a href="../reference/format_bullets.html">format_bullets()</a></code> now treats:</p>
+<ul>
+<li>Unnamed elements as unindented line breaks (<a href='https://github.com/r-lib/rlang/issues/1130'>#1130</a>)</li>
+<li>Elements named <code>"v"</code> as green ticks (<a href='https://github.com/rossellhayes'>@rossellhayes</a>)</li>
+<li>Elements named <code>" "</code> as indented line breaks</li>
+<li>Elements named <code>"*"</code> as normal bullets</li>
+<li>Elements named <code>"!"</code> as warning bullets</li>
+</ul>
+<p>For convenience, a fully unnamed vector is interpreted as a vector of <code>"*"</code> bullets.</p>
+</li>
+<li><p>New function <code><a href="../reference/arg_require.html">arg_require()</a></code> to check that an argument is supplied. It produces a more friendly error message than <code><a href="https://rdrr.io/r/base/force.html">force()</a></code> (<a href='https://github.com/r-lib/rlang/issues/1118'>#1118</a>).</p></li>
+<li><p><code><a href="../reference/arg_match.html">arg_match()</a></code> now mentions the supplied argument (<a href='https://github.com/r-lib/rlang/issues/1113'>#1113</a>).</p></li>
+<li><p><code><a href="../reference/missing_arg.html">is_missing()</a></code> now handles arguments with a default consistently with <code><a href="https://rdrr.io/r/base/missing.html">base::missing()</a></code> (<a href='https://github.com/r-lib/rlang/issues/1106'>#1106</a>).</p></li>
+<li><p><code><a href="../reference/is_formula.html">is_bare_formula()</a></code> now handles the <code>scoped</code> argument consistently. The default has been changed to <code>TRUE</code> for compatibility with the historical default behaviour (<a href='https://github.com/r-lib/rlang/issues/1115'>#1115</a>).</p></li>
+<li><p>The “definition” API (<code>dots_definitions()</code> etc.) has been archived.</p></li>
+<li><p>Fixed <code>!!</code> issue involving binary operators (<a href='https://github.com/r-lib/rlang/issues/1125'>#1125</a>).</p></li>
+<li><p>New <code><a href="../reference/type-predicates.html">is_complex()</a></code> predicates to complete the family (<a href='https://github.com/r-lib/rlang/issues/1127'>#1127</a>).</p></li>
+<li><p><code>.data</code> now fails early when it is subsetted outside of a data mask context. This provides a more informative error message (<a href='https://github.com/r-lib/rlang/issues/804'>#804</a>, <a href='https://github.com/r-lib/rlang/issues/1133'>#1133</a>).</p></li>
+<li><p>The C function <code>r_obj_address()</code> now properly prefixes addresses with the hexadecimal prefix <code>0x</code> on Windows (<a href='https://github.com/r-lib/rlang/issues/1135'>#1135</a>).</p></li>
+<li><p>Fixed performance issue when splicing classes that explicitly inherit from list with <code>!!!</code> (<a href='https://github.com/r-lib/rlang/issues/1140'>#1140</a>, r-lib/vctrs<a href='https://github.com/r-lib/rlang/issues/1170'>#1170</a>).</p></li>
+<li><p>Attributes of quosure lists are no longer modified by side effect (<a href='https://github.com/r-lib/rlang/issues/1142'>#1142</a>).</p></li>
 <li><p><code><a href="../reference/nse-defuse.html">enquo()</a></code>, <code><a href="../reference/nse-defuse.html">enquos()</a></code> and variants now support numbered dots like <code>..1</code> (<a href='https://github.com/r-lib/rlang/issues/1137'>#1137</a>).</p></li>
-<li><p><code><a href="../reference/sexp_address.html">sexp_address()</a></code> is now exported.</p></li>
+<li><p><code><a href="../reference/obj_address.html">obj_address()</a></code> is now exported.</p></li>
 <li><p><code><a href="../reference/env_bind.html">%&lt;~%</a></code> now actually works.</p></li>
 <li><p>Fixed a bug in the AST rotation algorithm that caused the <code>!!</code> operator to unexpectedly mutate injected objects (<a href='https://github.com/r-lib/rlang/issues/1103'>#1103</a>).</p></li>
 <li><p>Fixed a gcc11 warning related to <code><a href="../reference/hash.html">hash()</a></code> (<a href='https://github.com/r-lib/rlang/issues/1088'>#1088</a>).</p></li>
@@ -195,7 +229,7 @@
 <ul>
 <li><p><code><a href="../reference/inject.html">inject()</a></code> evaluates its argument with <code>!!</code>, <code>!!!</code>, and <code>{{</code> support.</p></li>
 <li><p>New <code><a href="../reference/enquo0.html">enquo0()</a></code> and <code><a href="../reference/enquo0.html">enquos0()</a></code> operators for defusing function arguments without automatic injection (unquotation).</p></li>
-<li><p><code><a href="../reference/format_error_bullets.html">format_error_bullets()</a></code> is no longer experimental. The <code>message</code> arguments of <code><a href="../reference/abort.html">abort()</a></code>, <code><a href="../reference/abort.html">warn()</a></code>, and <code><a href="../reference/abort.html">inform()</a></code> are automatically passed to that function to make it easy to create messages with regular, info, and error bullets. See <code><a href="../reference/format_error_bullets.html">?format_error_bullets</a></code> for more information.</p></li>
+<li><p><code><a href="../reference/format_error_bullets.html">format_error_bullets()</a></code> is no longer experimental. The <code>message</code> arguments of <code><a href="../reference/abort.html">abort()</a></code>, <code><a href="../reference/abort.html">warn()</a></code>, and <code><a href="../reference/abort.html">inform()</a></code> are automatically passed to that function to make it easy to create messages with regular, info, and error bullets. See <code><a href="../reference/format_bullets.html">?format_bullets</a></code> for more information.</p></li>
 <li><p>New <code><a href="../reference/zap_srcref.html">zap_srcref()</a></code> function to recursively remove source references from functions and calls.</p></li>
 <li><p>A new compat file for the zeallot operator <code>%&lt;-%</code> is now available in the rlang repository.</p></li>
 <li><p>New <code><a href="../reference/env_bind.html">%&lt;~%</a></code> operator to define a variable lazily.</p></li>
@@ -555,9 +589,9 @@ letters %&gt;% set_names(toupper)</code></pre>
 <li><p>Fixed a deparsing issue with symbols containing non-ASCII characters (<a href='https://github.com/r-lib/rlang/issues/691'>#691</a>).</p></li>
 <li><p><code><a href="../reference/expr_print.html">expr_print()</a></code> now handles <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> and <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code> operators correctly, and deparses non-syntactic symbols with backticks.</p></li>
 <li><p><code><a href="../reference/call_modify.html">call_modify()</a></code> now respects ordering of unnamed inputs. Before this fix, it would move all unnamed inputs after named ones.</p></li>
-<li><p><code><a href="../reference/as_function.html">as_closure()</a></code> wrappers now call primitives with positional arguments to avoid edge case issues of argument matching.</p></li>
-<li><p><code><a href="../reference/as_function.html">as_closure()</a></code> wrappers now dispatch properly on methods defined in the global environment (tidyverse/purrr<a href='https://github.com/r-lib/rlang/issues/459'>#459</a>).</p></li>
-<li><p><code><a href="../reference/as_function.html">as_closure()</a></code> now supports both base-style (<code>e1</code> and <code>e2</code>) and purrr-style (<code>.x</code> and <code>.y</code>) arguments with binary primitives.</p></li>
+<li><p><code><a href="../reference/as_closure.html">as_closure()</a></code> wrappers now call primitives with positional arguments to avoid edge case issues of argument matching.</p></li>
+<li><p><code><a href="../reference/as_closure.html">as_closure()</a></code> wrappers now dispatch properly on methods defined in the global environment (tidyverse/purrr<a href='https://github.com/r-lib/rlang/issues/459'>#459</a>).</p></li>
+<li><p><code><a href="../reference/as_closure.html">as_closure()</a></code> now supports both base-style (<code>e1</code> and <code>e2</code>) and purrr-style (<code>.x</code> and <code>.y</code>) arguments with binary primitives.</p></li>
 <li><p><code><a href="../reference/exec.html">exec()</a></code> takes <code>.fn</code> as first argument instead of <code>f</code>, for consistency with other rlang functions.</p></li>
 <li><p>Fixed infinite loop with quosures created inside a data mask.</p></li>
 <li><p>Base errors set as <code>parent</code> of rlang errors are now printed correctly.</p></li>
@@ -782,7 +816,7 @@ env_bind(env, !!!old)</code></pre>
 <p>Deprecated functions and arguments issue a warning inconditionally, but only once per session.</p>
 <ul>
 <li>
-<p>Calling <code><a href="../reference/nse-force.html">UQ()</a></code> and <code><a href="../reference/nse-force.html">UQS()</a></code> with the rlang namespace qualifier is deprecated as of rlang 0.3.0. Just use the unqualified forms instead:</p>
+<p>Calling <code><a href="../reference/bang-bang.html">UQ()</a></code> and <code><a href="../reference/bang-bang.html">UQS()</a></code> with the rlang namespace qualifier is deprecated as of rlang 0.3.0. Just use the unqualified forms instead:</p>
 <pre><code><a href="../reference/nse-defuse.html"># Bad
 rlang::expr(mean(rlang::UQ(var) * 100))
 
@@ -791,7 +825,7 @@ rlang::expr(mean(UQ(var) * 100))
 
 # Good
 rlang::expr(mean(!!var * 100))</a></code></pre>
-<p>Although soft-deprecated since rlang 0.2.0, <code><a href="../reference/nse-force.html">UQ()</a></code> and <code><a href="../reference/nse-force.html">UQS()</a></code> can still be used for now.</p>
+<p>Although soft-deprecated since rlang 0.2.0, <code><a href="../reference/bang-bang.html">UQ()</a></code> and <code><a href="../reference/bang-bang.html">UQS()</a></code> can still be used for now.</p>
 </li>
 <li><p>The <code>call</code> argument of <code><a href="../reference/abort.html">abort()</a></code> and condition constructors is now deprecated in favour of storing full backtraces.</p></li>
 <li><p>The <code>.standardise</code> argument of <code><a href="../reference/call_modify.html">call_modify()</a></code> is deprecated. Please use <code><a href="../reference/call_standardise.html">call_standardise()</a></code> beforehand.</p></li>
@@ -850,7 +884,7 @@ rlang::expr(mean(!!var * 100))</a></code></pre>
 <li><p><code><a href="../reference/nse-defuse.html">enquos()</a></code> is a variant of <code><a href="../reference/nse-defuse.html">quos()</a></code> that has a more natural interface for capturing multiple arguments and <code>...</code>.</p></li>
 </ul>
 <p>See the first section below for a complete list of changes to the tidy evaluation framework.</p>
-<p>This release also polishes the rlang API. Many functions have been renamed as we get a better feel for the consistency and clarity of the API. Note that rlang as a whole is still maturing and some functions are even experimental. In order to make things clearer for users of rlang, we have started to develop a set of conventions to document the current stability of each function. You will now find “lifecycle” sections in documentation topics. In addition we have gathered all lifecycle information in the <code><a href="../reference/lifecycle.html">?rlang::lifecycle</a></code> help page. Please only use functions marked as stable in your projects unless you are prepared to deal with occasional backward incompatible updates.</p>
+<p>This release also polishes the rlang API. Many functions have been renamed as we get a better feel for the consistency and clarity of the API. Note that rlang as a whole is still maturing and some functions are even experimental. In order to make things clearer for users of rlang, we have started to develop a set of conventions to document the current stability of each function. You will now find “lifecycle” sections in documentation topics. In addition we have gathered all lifecycle information in the <code>?rlang::lifecycle</code> help page. Please only use functions marked as stable in your projects unless you are prepared to deal with occasional backward incompatible updates.</p>
 <div id="tidy-evaluation-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tidy-evaluation-1" class="anchor"></a>Tidy evaluation</h2>
@@ -885,7 +919,7 @@ rlang::expr(mean(!!var * 100))</a></code></pre>
 <p>Quasiquotation now supports <code>!!</code> and <code>!!!</code> as functional forms:</p>
 <pre><code><a href="../reference/nse-defuse.html">expr(`!!`(var))
 quo(call(`!!!`(var)))</a></code></pre>
-<p>This is consistent with the way native R operators parses to function calls. These new functional forms are to be preferred to <code><a href="../reference/nse-force.html">UQ()</a></code> and <code><a href="../reference/nse-force.html">UQS()</a></code>. We are now questioning the latter and might deprecate them in a future release.</p>
+<p>This is consistent with the way native R operators parses to function calls. These new functional forms are to be preferred to <code><a href="../reference/bang-bang.html">UQ()</a></code> and <code><a href="../reference/bang-bang.html">UQS()</a></code>. We are now questioning the latter and might deprecate them in a future release.</p>
 </li>
 <li><p>The quasiquotation parser now gives meaningful errors in corner cases to help you figure out what is wrong.</p></li>
 <li><p>New getters and setters for quosures: <code><a href="../reference/quosure.html">quo_get_expr()</a></code>, <code><a href="../reference/quosure.html">quo_get_env()</a></code>, <code><a href="../reference/quosure.html">quo_set_expr()</a></code>, and <code><a href="../reference/quosure.html">quo_set_env()</a></code>. Compared to <code><a href="../reference/set_expr.html">get_expr()</a></code> etc, these accessors only work on quosures and are slightly more efficient.</p></li>
@@ -935,14 +969,14 @@ quo(call(`!!!`(var)))</a></code></pre>
 <a href="#bugfixes" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li><p>When nested quosures are evaluated with <code><a href="../reference/eval_tidy.html">eval_tidy()</a></code>, the <code>.env</code> pronoun now correctly refers to the current quosure under evaluation (<a href='https://github.com/r-lib/rlang/issues/174'>#174</a>). Previously it would always refer to the environment of the outermost quosure.</p></li>
-<li><p><code><a href="../reference/as_pairlist.html">as_pairlist()</a></code> (part of the experimental API) now supports <code>NULL</code> and objects of type pairlist (<a href='https://github.com/r-lib/rlang/issues/397'>#397</a>).</p></li>
+<li><p><code>as_pairlist()</code> (part of the experimental API) now supports <code>NULL</code> and objects of type pairlist (<a href='https://github.com/r-lib/rlang/issues/397'>#397</a>).</p></li>
 <li><p>Fixed a performance bug in <code><a href="../reference/set_names.html">set_names()</a></code> that caused a full copy of the vector names (<a href='https://github.com/jimhester'>@jimhester</a>, <a href='https://github.com/r-lib/rlang/issues/366'>#366</a>).</p></li>
 </ul>
 </div>
 <div id="api-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#api-changes" class="anchor"></a>API changes</h2>
-<p>The rlang API is maturing and still in flux. However we have made an effort to better communicate what parts are stable. We will not introduce breaking changes for stable functions unless the payoff for the change is worth the trouble. See <code><a href="../reference/lifecycle.html">?rlang::lifecycle</a></code> for the lifecycle status of exported functions.</p>
+<p>The rlang API is maturing and still in flux. However we have made an effort to better communicate what parts are stable. We will not introduce breaking changes for stable functions unless the payoff for the change is worth the trouble. See <code>?rlang::lifecycle</code> for the lifecycle status of exported functions.</p>
 <ul>
 <li>
 <p>The particle “lang” has been renamed to “call”:</p>
@@ -968,8 +1002,8 @@ quo(call(`!!!`(var)))</a></code></pre>
 <a href="#breaking-changes-2" class="anchor"></a>Breaking changes</h3>
 <ul>
 <li><p><code>!!</code> now binds tightly in order to match intuitive parsing of tidy eval code, e.g. <code>!! x &gt; y</code> is now equivalent to <code>(!! x) &gt; y</code>. A corollary of this new syntax is that you now have to be explicit when you want to unquote the whole expression on the right of <code>!!</code>. For instance you have to explicitly write <code>!! (x &gt; y)</code> to unquote <code>x &gt; y</code> rather than just <code>x</code>.</p></li>
-<li><p><code><a href="../reference/nse-force.html">UQ()</a></code>, <code><a href="../reference/nse-force.html">UQS()</a></code> and <code>:=</code> now issue an error when called directly. The previous definitions caused surprising results when the operators were invoked in wrong places (i.e. not in quasiquoted arguments).</p></li>
-<li><p>The prefix form <code><a href="../reference/nse-force.html">`!!`()</a></code> is now an alias to <code>!!</code> rather than <code>UQE()</code>. This makes it more in line with regular R syntax where operators are parsed as regular calls, e.g. <code>a + b</code> is parsed as <code>`+`(a, b)</code> and both forms are completely equivalent. Also the prefix form <code><a href="../reference/nse-force.html">`!!!`()</a></code> is now equivalent to <code>!!!</code>.</p></li>
+<li><p><code><a href="../reference/bang-bang.html">UQ()</a></code>, <code><a href="../reference/bang-bang.html">UQS()</a></code> and <code>:=</code> now issue an error when called directly. The previous definitions caused surprising results when the operators were invoked in wrong places (i.e. not in quasiquoted arguments).</p></li>
+<li><p>The prefix form <code><a href="../reference/bang-bang.html">`!!`()</a></code> is now an alias to <code>!!</code> rather than <code>UQE()</code>. This makes it more in line with regular R syntax where operators are parsed as regular calls, e.g. <code>a + b</code> is parsed as <code>`+`(a, b)</code> and both forms are completely equivalent. Also the prefix form <code><a href="../reference/bang-bang.html">`!!!`()</a></code> is now equivalent to <code>!!!</code>.</p></li>
 <li><p><code>UQE()</code> is now deprecated in order to simplify the syntax of quasiquotation. Please use <code>!! get_expr(x)</code> instead.</p></li>
 <li><p><code><a href="../reference/expr_interp.html">expr_interp()</a></code> now returns a formula instead of a quosure when supplied a formula.</p></li>
 <li><p><code>is_quosureish()</code> and <code>as_quosureish()</code> are deprecated. These functions assumed that quosures are formulas but that is only an implementation detail.</p></li>
@@ -982,8 +1016,8 @@ quo(call(`!!!`(var)))</a></code></pre>
 <h3 class="hasAnchor">
 <a href="#upcoming-breaking-changes" class="anchor"></a>Upcoming breaking changes</h3>
 <ul>
-<li><p>Calling the functional forms of unquote operators with the rlang namespace qualifier is soft-deprecated. <code><a href="../reference/nse-force.html">UQ()</a></code> and <code><a href="../reference/nse-force.html">UQS()</a></code> are not function calls so it does not make sense to namespace them. Supporting namespace qualifiers complicates the implementation of unquotation and is misleading as to the nature of unquoting (which are syntactic operators at quotation-time rather than function calls at evaluation-time).</p></li>
-<li><p>We are now questioning <code><a href="../reference/nse-force.html">UQ()</a></code> and <code><a href="../reference/nse-force.html">UQS()</a></code> as functional forms of <code>!!</code>. If <code>!!</code> and <code>!!!</code> were native R operators, they would parse to the functional calls <code><a href="../reference/nse-force.html">`!!`()</a></code> and <code><a href="../reference/nse-force.html">`!!!`()</a></code>. This is now the preferred way to unquote with a function call rather than with the operators. We haven’t decided yet whether we will deprecate <code><a href="../reference/nse-force.html">UQ()</a></code> and <code><a href="../reference/nse-force.html">UQS()</a></code> in the future. In any case we recommend using the new functional forms.</p></li>
+<li><p>Calling the functional forms of unquote operators with the rlang namespace qualifier is soft-deprecated. <code><a href="../reference/bang-bang.html">UQ()</a></code> and <code><a href="../reference/bang-bang.html">UQS()</a></code> are not function calls so it does not make sense to namespace them. Supporting namespace qualifiers complicates the implementation of unquotation and is misleading as to the nature of unquoting (which are syntactic operators at quotation-time rather than function calls at evaluation-time).</p></li>
+<li><p>We are now questioning <code><a href="../reference/bang-bang.html">UQ()</a></code> and <code><a href="../reference/bang-bang.html">UQS()</a></code> as functional forms of <code>!!</code>. If <code>!!</code> and <code>!!!</code> were native R operators, they would parse to the functional calls <code><a href="../reference/bang-bang.html">`!!`()</a></code> and <code><a href="../reference/bang-bang.html">`!!!`()</a></code>. This is now the preferred way to unquote with a function call rather than with the operators. We haven’t decided yet whether we will deprecate <code><a href="../reference/bang-bang.html">UQ()</a></code> and <code><a href="../reference/bang-bang.html">UQS()</a></code> in the future. In any case we recommend using the new functional forms.</p></li>
 <li><p><code><a href="../reference/parse_quosure.html">parse_quosure()</a></code> and <code><a href="../reference/parse_quosure.html">parse_quosures()</a></code> are soft-deprecated in favour of <code><a href="../reference/parse_expr.html">parse_quo()</a></code> and <code><a href="../reference/parse_expr.html">parse_quos()</a></code>. These new names are consistent with the rule that abbreviated suffixes indicate the return type of a function. In addition the new functions require their callers to explicitly supply an environment for the quosures.</p></li>
 <li><p>Using <code><a href="../reference/f_rhs.html">f_rhs()</a></code> and <code><a href="../reference/f_rhs.html">f_env()</a></code> on quosures is soft-deprecated. The fact that quosures are formulas is an implementation detail that might change in the future. Please use <code><a href="../reference/quosure.html">quo_get_expr()</a></code> and <code><a href="../reference/quosure.html">quo_get_env()</a></code> instead.</p></li>
 <li><p><code><a href="../reference/quo_expr.html">quo_expr()</a></code> is soft-deprecated in favour of <code><a href="../reference/quo_squash.html">quo_squash()</a></code>. <code><a href="../reference/quo_expr.html">quo_expr()</a></code> was a misnomer because it implied that it was a mere expression acccessor for quosures whereas it was really a lossy operation that squashed all nested quosures.</p></li>

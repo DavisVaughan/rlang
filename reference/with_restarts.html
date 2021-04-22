@@ -89,7 +89,7 @@ with_restarts())." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rlang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10.9002</span>
       </span>
     </div>
 
@@ -163,7 +163,7 @@ with_restarts())." />
     </div>
 
     <div class="ref-description">
-    <p><a href='https://www.tidyverse.org/lifecycle/#questioning'><img src='figures/lifecycle-questioning.svg' alt='Questioning lifecycle'></a></p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#questioning'><img src='figures/lifecycle-questioning.svg' alt='[Questioning]' /></a></p>
 <p>Restart points are named functions that are established with
 <code>with_restarts()</code>. Once established, you can interrupt the normal
 execution of R code, jump to the restart, and resume execution from
@@ -182,7 +182,7 @@ from the establishing point (i.e., a return value for
       <th>.expr</th>
       <td><p>An expression to execute with new restarts established
 on the stack. This argument is passed by expression and supports
-<a href='nse-force.html'>unquoting</a>. It is evaluated in a context where
+<a href='bang-bang.html'>unquoting</a>. It is evaluated in a context where
 restarts are established.</p></td>
     </tr>
     <tr>
