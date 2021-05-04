@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rlang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.10.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.11.9000</span>
       </span>
     </div>
 
@@ -158,6 +158,12 @@
 <a href="#rlang-development-version" class="anchor"></a>rlang (development version)<small> Unreleased </small>
 </h1>
 <ul>
+<li>
+<p><code><a href="../reference/check_dots_empty.html">check_dots_empty()</a></code>, <code>check_dots_unused()</code>, and <code><a href="../reference/check_dots_unnamed.html">check_dots_unnamed()</a></code> have been moved from ellipsis to rlang. The ellipsis package is deprecated and will eventually be archived.</p>
+<p>We have added <code><a href="../reference/check_dots_empty0.html">check_dots_empty0()</a></code>. It has a different UI but is almost as efficient as checking for <code><a href="../reference/missing.html">missing(...)</a></code>. Use this in very low level functions where a couple microseconds make a difference.</p>
+</li>
+<li><p><code><a href="../reference/s3_register.html">s3_register()</a></code> no longer fails when generic does not exist. This prevents failures when users don’t have all the last versions of packages (<a href='https://github.com/r-lib/rlang/issues/1112'>#1112</a>).</p></li>
+<li><p>Formulas are now deparsed according to the tidyverse style guide (<code>~symbol</code> without space and <code>~ expression()</code> with a space).</p></li>
 <li><p>New <code><a href="../reference/hash.html">hash_file()</a></code>, complementing <code><a href="../reference/hash.html">hash()</a></code>, to generate 128-bit hashes for the data within a file without loading it into R (<a href='https://github.com/r-lib/rlang/issues/1134'>#1134</a>).</p></li>
 <li><p>New <code><a href="../reference/env_cache.html">env_cache()</a></code> function to retrieve a value or create it with a default if it doesn’t exist yet (<a href='https://github.com/r-lib/rlang/issues/1081'>#1081</a>).</p></li>
 <li><p><code><a href="../reference/env_get.html">env_get()</a></code> and <code><a href="../reference/env_get.html">env_get_list()</a></code> gain a <code>last</code> argument. Lookup stops in that environment. This can be useful in conjunction with <code><a href="https://rdrr.io/r/base/ns-topenv.html">base::topenv()</a></code>.</p></li>
@@ -199,8 +205,16 @@
 <li><p><code><a href="../reference/obj_address.html">obj_address()</a></code> is now exported.</p></li>
 <li><p><code><a href="../reference/env_bind.html">%&lt;~%</a></code> now actually works.</p></li>
 <li><p>Fixed a bug in the AST rotation algorithm that caused the <code>!!</code> operator to unexpectedly mutate injected objects (<a href='https://github.com/r-lib/rlang/issues/1103'>#1103</a>).</p></li>
-<li><p>Fixed a gcc11 warning related to <code><a href="../reference/hash.html">hash()</a></code> (<a href='https://github.com/r-lib/rlang/issues/1088'>#1088</a>).</p></li>
 <li><p><code>XXH3_64bits()</code> from the XXHash library is now exposed as C callable under the name <code>rlang_xxh3_64bits()</code>.</p></li>
+</ul>
+</div>
+    <div id="rlang-0411" class="section level1">
+<h1 class="page-header" data-toc-text="0.4.11">
+<a href="#rlang-0411" class="anchor"></a>rlang 0.4.11<small> 2021-04-30 </small>
+</h1>
+<ul>
+<li><p>Fix for CRAN checks.</p></li>
+<li><p>Fixed a gcc11 warning related to <code><a href="../reference/hash.html">hash()</a></code> (<a href='https://github.com/r-lib/rlang/issues/1088'>#1088</a>).</p></li>
 </ul>
 </div>
     <div id="rlang-0410" class="section level1">
