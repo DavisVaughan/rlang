@@ -186,9 +186,12 @@ version that offers more control.</p>
     </tr>
     <tr>
       <th>.named</th>
-      <td><p>Whether to ensure all dots are named. Unnamed
-elements are processed with <code><a href='as_label.html'>as_label()</a></code> to build a default
-name.</p></td>
+      <td><p>If <code>TRUE</code>, unnamed inputs are automatically named
+with <code><a href='as_label.html'>as_label()</a></code>. This is equivalent to applying
+<code><a href='exprs_auto_name.html'>exprs_auto_name()</a></code> on the result. If <code>FALSE</code>, unnamed elements
+are left as is and, if fully unnamed, the list is given minimal
+names (a vector of <code>""</code>). If <code>NULL</code>, fully unnamed results are
+left with <code>NULL</code> names.</p></td>
     </tr>
     <tr>
       <th>.ignore_empty</th>
@@ -335,9 +338,9 @@ This ensures assignments are explicit.</p></td>
 #&gt; </div><div class='input'>
 <span class='co'># Or raise an informative error:</span>
 <span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='fu'>dots_list</span><span class='op'>(</span>a <span class='op'>=</span> <span class='fl'>1</span>, a <span class='op'>=</span> <span class='fl'>2</span>, b <span class='op'>=</span> <span class='fl'>3</span>, b <span class='op'>=</span> <span class='fl'>4</span>, <span class='fl'>5</span>, <span class='fl'>6</span>, .homonyms <span class='op'>=</span> <span class='st'>"error"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Error : Arguments can't have the same name. We found these problems:
-#&gt; * Multiple arguments named `a` at positions 1 and 2
-#&gt; * Multiple arguments named `b` at positions 3 and 4</div><div class='input'>
+</div><div class='output co'>#&gt; Error : <span style='font-weight: bold;'>Arguments can't have the same name.</span>
+#&gt; <span style='color: #BB0000;'>✖</span> Multiple arguments named `a` at positions 1 and 2.
+#&gt; <span style='color: #BB0000;'>✖</span> Multiple arguments named `b` at positions 3 and 4.</div><div class='input'>
 
 <span class='co'># dots_list() can be configured to warn when a `&lt;-` call is</span>
 <span class='co'># detected:</span>

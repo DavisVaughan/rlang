@@ -61,6 +61,9 @@
     <loc>https://rlang.r-lib.org/reference/box.html</loc>
   </url>
   <url>
+    <loc>https://rlang.r-lib.org/reference/bytes-class.html</loc>
+  </url>
+  <url>
     <loc>https://rlang.r-lib.org/reference/call2.html</loc>
   </url>
   <url>
@@ -116,6 +119,9 @@
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/cnd.html</loc>
+  </url>
+  <url>
+    <loc>https://rlang.r-lib.org/reference/cnd_as_unhandled_error.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/cnd_message.html</loc>
@@ -268,9 +274,6 @@
     <loc>https://rlang.r-lib.org/reference/fn_fmls.html</loc>
   </url>
   <url>
-    <loc>https://rlang.r-lib.org/reference/format_bullets.html</loc>
-  </url>
-  <url>
     <loc>https://rlang.r-lib.org/reference/format_error_bullets.html</loc>
   </url>
   <url>
@@ -407,6 +410,9 @@
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/names2.html</loc>
+  </url>
+  <url>
+    <loc>https://rlang.r-lib.org/reference/names_inform_repair.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/new-vector-along-retired.html</loc>
