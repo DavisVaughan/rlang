@@ -157,7 +157,29 @@
 <h1 class="page-header" data-toc-text="development version">
 <a href="#rlang-development-version" class="anchor"></a>rlang (development version)<small> Unreleased </small>
 </h1>
+<div id="breaking-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
 <ul>
+<li>
+<p>If a string is supplied to <code><a href="../reference/as_function.html">as_function()</a></code> instead of an object (function or formula), the function is looked up in the global environment instead of the calling environment. In general, passing a function name as a string is brittle. It is easy to forget to pass the user environment to <code><a href="../reference/as_function.html">as_function()</a></code> and sometimes there is no obvious user environment. The support for strings should be considered a convenience for end users only, not for programmers.</p>
+<p>Since environment forwarding is easy to mess up, and since the feature is aimed towards end users, <code><a href="../reference/as_function.html">as_function()</a></code> now defaults to the global environment. Supply an environment explicitly if that is not correct in your case.</p>
+</li>
+<li>
+<p>The global <code>.data</code> object now always throws an error when subsetted. This causes early informative errors when the <code>.data</code> pronoun is used outside of a data mask.</p>
+<p>We noticed some CRAN failures following this change that revealed issues such as mistakenly using the <code>by</code> argument of <code>dplyr::left_join()</code> or the <code>...</code> of <code>ggplot2::labs()</code> as data-masked arguments. Since there is no data mask for these arguments, the global <code>.data</code> pronoun (used as a documentation anchor) was subsetted and silently returned <code>NULL</code>.</p>
+</li>
+</ul>
+</div>
+<div id="features-and-bugfixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#features-and-bugfixes" class="anchor"></a>Features and bugfixes</h2>
+<ul>
+<li><p>New C callable <code>rlang_env_unbind()</code>. This is a wrapper around <code>R_removeVarFromFrame()</code> on R &gt;= 4.0.0. On older R this wraps the R function <code><a href="https://rdrr.io/r/base/rm.html">base::rm()</a></code>. Unlike <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code>, this function does not warn (nor throw) when a binding does not exist.</p></li>
+<li><p><code>friendly_type_of()</code> now supports missing arguments.</p></li>
+<li><p><code><a href="../reference/env_clone.html">env_clone()</a></code> now properly clones active bindings and avoids forcing promises (<a href='https://github.com/r-lib/rlang/issues/1228'>#1228</a>). On R &lt; 4.0, promises are still forced.</p></li>
+<li><p>Fixed a hang when a quosure inheriting from a data mask is evaluated in the mask again.</p></li>
+<li><p>Added <code><a href="../reference/is_condition.html">is_error()</a></code>, <code><a href="../reference/is_condition.html">is_warning()</a></code>, and <code><a href="../reference/is_condition.html">is_message()</a></code> predicates (<a href='https://github.com/r-lib/rlang/issues/1220'>#1220</a>).</p></li>
 <li><p>Fixed an <code><a href="../reference/s3_register.html">s3_register()</a></code> issue when the registering package is a dependency of the package that exports the generic (<a href='https://github.com/r-lib/rlang/issues/1225'>#1225</a>).</p></li>
 <li><p><code><a href="../reference/abort.html">interrupt()</a></code> no longer fails when interrupts are suspended (<a href='https://github.com/r-lib/rlang/issues/1224'>#1224</a>).</p></li>
 <li><p>Added <code>compat-vctrs.R</code> file for robust manipulation of data frames in zero-deps packages.</p></li>
@@ -235,6 +257,7 @@
 <li><p><code>XXH3_64bits()</code> from the XXHash library is now exposed as C callable under the name <code>rlang_xxh3_64bits()</code>.</p></li>
 </ul>
 </div>
+</div>
     <div id="rlang-0411" class="section level1">
 <h1 class="page-header" data-toc-text="0.4.11">
 <a href="#rlang-0411" class="anchor"></a>rlang 0.4.11<small> 2021-04-30 </small>
@@ -260,9 +283,9 @@
 <h1 class="page-header" data-toc-text="0.4.9">
 <a href="#rlang-049" class="anchor"></a>rlang 0.4.9<small> 2020-11-25 </small>
 </h1>
-<div id="breaking-changes" class="section level2">
+<div id="breaking-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#breaking-changes" class="anchor"></a>Breaking changes</h2>
+<a href="#breaking-changes-1" class="anchor"></a>Breaking changes</h2>
 <ul>
 <li>Dropped support for the R 3.2 series.</li>
 </ul>
@@ -646,9 +669,9 @@ letters %&gt;% set_names(toupper)</code></pre>
 <h1 class="page-header" data-toc-text="0.3.0">
 <a href="#rlang-030" class="anchor"></a>rlang 0.3.0<small> 2018-10-22 </small>
 </h1>
-<div id="breaking-changes-1" class="section level2">
+<div id="breaking-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#breaking-changes-1" class="anchor"></a>Breaking changes</h2>
+<a href="#breaking-changes-2" class="anchor"></a>Breaking changes</h2>
 <p>The rlang API is still maturing. In this section, you’ll find hard breaking changes. See the life cycle section below for an exhaustive list of API changes.</p>
 <ul>
 <li>
@@ -1041,9 +1064,9 @@ quo(call(`!!!`(var)))</a></code></pre>
 </li>
 <li><p>We no longer require a data mask (previously called overscope) to be cleaned up after evaluation. <code><a href="../reference/as_overscope.html">overscope_clean()</a></code> is thus soft-deprecated without replacement.</p></li>
 </ul>
-<div id="breaking-changes-2" class="section level3">
+<div id="breaking-changes-3" class="section level3">
 <h3 class="hasAnchor">
-<a href="#breaking-changes-2" class="anchor"></a>Breaking changes</h3>
+<a href="#breaking-changes-3" class="anchor"></a>Breaking changes</h3>
 <ul>
 <li><p><code>!!</code> now binds tightly in order to match intuitive parsing of tidy eval code, e.g. <code>!! x &gt; y</code> is now equivalent to <code>(!! x) &gt; y</code>. A corollary of this new syntax is that you now have to be explicit when you want to unquote the whole expression on the right of <code>!!</code>. For instance you have to explicitly write <code>!! (x &gt; y)</code> to unquote <code>x &gt; y</code> rather than just <code>x</code>.</p></li>
 <li><p><code><a href="../reference/bang-bang.html">UQ()</a></code>, <code><a href="../reference/bang-bang.html">UQS()</a></code> and <code>:=</code> now issue an error when called directly. The previous definitions caused surprising results when the operators were invoked in wrong places (i.e. not in quasiquoted arguments).</p></li>
