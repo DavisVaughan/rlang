@@ -43,7 +43,8 @@
 <meta property="og:description" content="A backtrace captures the sequence of calls that lead to the current
 function, sometimes called the call stack. Because of lazy
 evaluation, the call stack in R is actually a tree, which the
-summary() method of this object will reveal." />
+print() method for this object will reveal.
+trace_length() returns the number of frames in a backtrace." />
 
 
 
@@ -162,7 +163,8 @@ summary() method of this object will reveal." />
     <p>A backtrace captures the sequence of calls that lead to the current
 function, sometimes called the call stack. Because of lazy
 evaluation, the call stack in R is actually a tree, which the
-<code><a href='https://rdrr.io/r/base/summary.html'>summary()</a></code> method of this object will reveal.</p>
+<code><a href='https://rdrr.io/r/base/print.html'>print()</a></code> method for this object will reveal.</p>
+<p><code>trace_length()</code> returns the number of frames in a backtrace.</p>
     </div>
 
     <pre class="usage"><span class='fu'>trace_back</span><span class='op'>(</span>top <span class='op'>=</span> <span class='cn'>NULL</span>, bottom <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
@@ -203,9 +205,6 @@ capture context.</p>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>trace_length()</code> returns the number of frames in a backtrace.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Trim backtraces automatically (this improves the generated</span>
@@ -227,27 +226,27 @@ capture context.</p>
 <span class='co'># Lazy evaluation introduces a tree like structure</span>
 <span class='fu'><a href='https://rdrr.io/r/base/identity.html'>identity</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/identity.html'>identity</a></span><span class='op'>(</span><span class='fu'>f</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'>    </span>▆
-#&gt; <span style='color: #555555;'> 1. </span>├─base::identity(identity(f()))
+#&gt; <span style='color: #555555;'> 1. </span>├─<span style='font-weight: bold;'>base</span>::identity(identity(f()))
 #&gt; <span style='color: #555555;'> 2. </span>├─base::identity(f())
 #&gt; <span style='color: #555555;'> 3. </span>└─f()
 #&gt; <span style='color: #555555;'> 4. </span>  └─g()
 #&gt; <span style='color: #555555;'> 5. </span>    └─h()</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/identity.html'>identity</a></span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='fu'>f</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'>    </span>▆
-#&gt; <span style='color: #555555;'> 1. </span>├─base::identity(try(f()))
+#&gt; <span style='color: #555555;'> 1. </span>├─<span style='font-weight: bold;'>base</span>::identity(try(f()))
 #&gt; <span style='color: #555555;'> 2. </span>├─base::try(f())
 #&gt; <span style='color: #555555;'> 3. </span>│ └─base::tryCatch(...)
-#&gt; <span style='color: #555555;'> 4. </span>│   └─base:::tryCatchList(expr, classes, parentenv, handlers)
-#&gt; <span style='color: #555555;'> 5. </span>│     └─base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
-#&gt; <span style='color: #555555;'> 6. </span>│       └─base:::doTryCatch(return(expr), name, parentenv, handler)
+#&gt; <span style='color: #555555;'> 4. </span>│   └─base tryCatchList(expr, classes, parentenv, handlers)
+#&gt; <span style='color: #555555;'> 5. </span>│     └─base tryCatchOne(expr, names, parentenv, handlers[[1L]])
+#&gt; <span style='color: #555555;'> 6. </span>│       └─base doTryCatch(return(expr), name, parentenv, handler)
 #&gt; <span style='color: #555555;'> 7. </span>└─f()
 #&gt; <span style='color: #555555;'> 8. </span>  └─g()
 #&gt; <span style='color: #555555;'> 9. </span>    └─h()</div><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/identity.html'>identity</a></span><span class='op'>(</span><span class='fu'>f</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'>    </span>▆
-#&gt; <span style='color: #555555;'> 1. </span>├─base::try(identity(f()))
+#&gt; <span style='color: #555555;'> 1. </span>├─<span style='font-weight: bold;'>base</span>::try(identity(f()))
 #&gt; <span style='color: #555555;'> 2. </span>│ └─base::tryCatch(...)
-#&gt; <span style='color: #555555;'> 3. </span>│   └─base:::tryCatchList(expr, classes, parentenv, handlers)
-#&gt; <span style='color: #555555;'> 4. </span>│     └─base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
-#&gt; <span style='color: #555555;'> 5. </span>│       └─base:::doTryCatch(return(expr), name, parentenv, handler)
+#&gt; <span style='color: #555555;'> 3. </span>│   └─base tryCatchList(expr, classes, parentenv, handlers)
+#&gt; <span style='color: #555555;'> 4. </span>│     └─base tryCatchOne(expr, names, parentenv, handlers[[1L]])
+#&gt; <span style='color: #555555;'> 5. </span>│       └─base doTryCatch(return(expr), name, parentenv, handler)
 #&gt; <span style='color: #555555;'> 6. </span>├─base::identity(f())
 #&gt; <span style='color: #555555;'> 7. </span>└─f()
 #&gt; <span style='color: #555555;'> 8. </span>  └─g()
@@ -257,16 +256,16 @@ capture context.</p>
 <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/identity.html'>identity</a></span><span class='op'>(</span><span class='fu'>f</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>x</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'>    </span>▆
-#&gt; <span style='color: #555555;'> 1. </span>├─base::try(identity(f()))
+#&gt; <span style='color: #555555;'> 1. </span>├─<span style='font-weight: bold;'>base</span>::try(identity(f()))
 #&gt; <span style='color: #555555;'> 2. </span>│ └─base::tryCatch(...)
-#&gt; <span style='color: #555555;'> 3. </span>│   └─base:::tryCatchList(expr, classes, parentenv, handlers)
-#&gt; <span style='color: #555555;'> 4. </span>│     └─base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
-#&gt; <span style='color: #555555;'> 5. </span>│       └─base:::doTryCatch(return(expr), name, parentenv, handler)
+#&gt; <span style='color: #555555;'> 3. </span>│   └─base tryCatchList(expr, classes, parentenv, handlers)
+#&gt; <span style='color: #555555;'> 4. </span>│     └─base tryCatchOne(expr, names, parentenv, handlers[[1L]])
+#&gt; <span style='color: #555555;'> 5. </span>│       └─base doTryCatch(return(expr), name, parentenv, handler)
 #&gt; <span style='color: #555555;'> 6. </span>├─base::identity(f())
 #&gt; <span style='color: #555555;'> 7. </span>└─f()
 #&gt; <span style='color: #555555;'> 8. </span>  └─g()
 #&gt; <span style='color: #555555;'> 9. </span>    └─h()</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, simplify <span class='op'>=</span> <span class='st'>"branch"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'> 1. </span>base::try(identity(f()))
+</div><div class='output co'>#&gt; <span style='color: #555555;'> 1. </span><span style='font-weight: bold;'>base</span>::try(identity(f()))
 #&gt; <span style='color: #555555;'> 7. </span>f()
 #&gt; <span style='color: #555555;'> 8. </span>g()
 #&gt; <span style='color: #555555;'> 9. </span>h()</div><div class='input'>
@@ -276,7 +275,7 @@ capture context.</p>
 <span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='op'>{</span><span class='va'>x</span> <span class='op'>&lt;&lt;-</span> <span class='fu'>f</span><span class='op'>(</span><span class='op'>)</span>; <span class='fl'>10</span><span class='op'>}</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 10</div><div class='input'><span class='va'>x</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'>    </span>▆
-#&gt; <span style='color: #555555;'> 1. </span>├─base::with(...)
+#&gt; <span style='color: #555555;'> 1. </span>├─<span style='font-weight: bold;'>base</span>::with(...)
 #&gt; <span style='color: #555555;'> 2. </span>└─base::with.default(...)
 #&gt; <span style='color: #555555;'> 3. </span>  └─base::eval(substitute(expr), data, enclos = parent.frame())
 #&gt; <span style='color: #555555;'> 4. </span>    └─base::eval(substitute(expr), data, enclos = parent.frame())
@@ -300,21 +299,21 @@ capture context.</p>
 #&gt; <span style='color: #555555;'>  3. </span>    └─pkgdown:::build_site_local(...)
 #&gt; <span style='color: #555555;'>  4. </span>      └─pkgdown::build_reference(...)
 #&gt; <span style='color: #555555;'>  5. </span>        └─purrr::map(...)
-#&gt; <span style='color: #555555;'>  6. </span>          └─pkgdown:::.f(.x[[i]], ...)
-#&gt; <span style='color: #555555;'>  7. </span>            ├─base::withCallingHandlers(...)
-#&gt; <span style='color: #555555;'>  8. </span>            └─pkgdown:::data_reference_topic(...)
+#&gt; <span style='color: #555555;'>  6. </span>          └─pkgdown .f(.x[[i]], ...)
+#&gt; <span style='color: #555555;'>  7. </span>            ├─<span style='font-weight: bold;'>base</span>::withCallingHandlers(...)
+#&gt; <span style='color: #555555;'>  8. </span>            └─<span style='font-weight: bold;'>pkgdown</span>:::data_reference_topic(...)
 #&gt; <span style='color: #555555;'>  9. </span>              └─pkgdown:::run_examples(...)
 #&gt; <span style='color: #555555;'> 10. </span>                └─pkgdown:::highlight_examples(code, topic, env = env)
 #&gt; <span style='color: #555555;'> 11. </span>                  └─downlit::evaluate_and_highlight(...)
 #&gt; <span style='color: #555555;'> 12. </span>                    └─evaluate::evaluate(code, child_env(env), new_device = TRUE)
 #&gt; <span style='color: #555555;'> 13. </span>                      └─evaluate:::evaluate_call(...)
-#&gt; <span style='color: #555555;'> 14. </span>                        ├─evaluate:::timing_fn(...)
-#&gt; <span style='color: #555555;'> 15. </span>                        ├─evaluate:::handle(...)
-#&gt; <span style='color: #555555;'> 16. </span>                        │ └─base::try(f, silent = TRUE)
+#&gt; <span style='color: #555555;'> 14. </span>                        ├─evaluate timing_fn(...)
+#&gt; <span style='color: #555555;'> 15. </span>                        ├─evaluate handle(...)
+#&gt; <span style='color: #555555;'> 16. </span>                        │ └─<span style='font-weight: bold;'>base</span>::try(f, silent = TRUE)
 #&gt; <span style='color: #555555;'> 17. </span>                        │   └─base::tryCatch(...)
-#&gt; <span style='color: #555555;'> 18. </span>                        │     └─base:::tryCatchList(expr, classes, parentenv, handlers)
-#&gt; <span style='color: #555555;'> 19. </span>                        │       └─base:::tryCatchOne(expr, names, parentenv, handlers[[1L]])
-#&gt; <span style='color: #555555;'> 20. </span>                        │         └─base:::doTryCatch(return(expr), name, parentenv, handler)
+#&gt; <span style='color: #555555;'> 18. </span>                        │     └─base tryCatchList(expr, classes, parentenv, handlers)
+#&gt; <span style='color: #555555;'> 19. </span>                        │       └─base tryCatchOne(expr, names, parentenv, handlers[[1L]])
+#&gt; <span style='color: #555555;'> 20. </span>                        │         └─base doTryCatch(return(expr), name, parentenv, handler)
 #&gt; <span style='color: #555555;'> 21. </span>                        ├─base::withCallingHandlers(...)
 #&gt; <span style='color: #555555;'> 22. </span>                        ├─base::withVisible(eval(expr, envir, enclos))
 #&gt; <span style='color: #555555;'> 23. </span>                        └─base::eval(expr, envir, enclos)
@@ -339,7 +338,7 @@ capture context.</p>
 </div><div class='output co'>#&gt; 
 #&gt; &gt; summary(f())
 #&gt; <span style='color: #555555;'>    </span>▆
-#&gt; <span style='color: #555555;'> 1. </span>├─base::summary(f())
+#&gt; <span style='color: #555555;'> 1. </span>├─<span style='font-weight: bold;'>base</span>::summary(f())
 #&gt; <span style='color: #555555;'> 2. </span>└─f()
 #&gt; <span style='color: #555555;'> 3. </span>  └─g()
 #&gt; <span style='color: #555555;'> 4. </span>    └─h()</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/connections.html'>close</a></span><span class='op'>(</span><span class='va'>conn</span><span class='op'>)</span>

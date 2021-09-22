@@ -169,15 +169,50 @@
 <p>The global <code>.data</code> object now always throws an error when subsetted. This causes early informative errors when the <code>.data</code> pronoun is used outside of a data mask.</p>
 <p>We noticed some CRAN failures following this change that revealed issues such as mistakenly using the <code>by</code> argument of <code>dplyr::left_join()</code> or the <code>...</code> of <code>ggplot2::labs()</code> as data-masked arguments. Since there is no data mask for these arguments, the global <code>.data</code> pronoun (used as a documentation anchor) was subsetted and silently returned <code>NULL</code>.</p>
 </li>
+<li><p>For consistency with the cli package, <code><a href="../reference/abort.html">abort(c("Foo", "Bar"))</a></code> no longer interprets <code>"Bar"</code> as a bullet and it gets displayed as an unprefixed line. You need to be explicit by supplying the <code>"*"</code> specifier: <code><a href="../reference/abort.html">abort(c("Foo", "*" = "Bar"))</a></code>.</p></li>
+<li><p><code><a href="../reference/with_handlers.html">with_handlers()</a></code> is deprecated.</p></li>
 </ul>
 </div>
 <div id="features-and-bugfixes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#features-and-bugfixes" class="anchor"></a>Features and bugfixes</h2>
 <ul>
+<li><p><code><a href="../reference/try_catch.html">try_catch()</a></code> is a flexible alternative to both <code><a href="https://rdrr.io/r/base/conditions.html">tryCatch()</a></code> and <code><a href="https://rdrr.io/r/base/conditions.html">withCallingHandlers()</a></code> (<a href='https://github.com/r-lib/rlang/issues/503'>#503</a>). It is also more efficient than <code><a href="https://rdrr.io/r/base/conditions.html">tryCatch()</a></code> and creates leaner backtraces.</p></li>
+<li><p><code><a href="../reference/entrace.html">entrace()</a></code> and <code><a href="../reference/global_entrace.html">global_entrace()</a></code> now log warnings and messages with backtraces attached. Run <code><a href="../reference/last_warnings.html">last_warnings()</a></code> or <code><a href="../reference/last_warnings.html">last_messages()</a></code> to inspect the warnings or messages emitted during the last command.</p></li>
+<li><p>Objects headers (as printed by <code><a href="../reference/last_error.html">last_error()</a></code>, <code><a href="../reference/env_print.html">env_print()</a></code>, …) are now formatted using the <code>cls</code> class of the cli package.</p></li>
+<li><p><code><a href="../reference/global_entrace.html">global_entrace()</a></code> is a user-friendly helper for configuring errors in your RProfile. Call it to enrich all base errors with an rlang backtrace with <code><a href="../reference/last_error.html">last_error()</a></code> and <code>backtrace_on_error</code> support.</p></li>
+<li><p><code><a href="../reference/arg_match.html">arg_match()</a></code> gains a <code>multiple</code> argument for cases where zero or several matches are allowed (<a href='https://github.com/r-lib/rlang/issues/1281'>#1281</a>).</p></li>
+<li><p>Changes in namespaces are now emboldened in backtraces (<a href='https://github.com/r-lib/rlang/issues/946'>#946</a>).</p></li>
+<li><p>Functions defined in the global environments or in local execution environments are now displayed with a space separator in backtraces instead of <code><a href="https://rdrr.io/r/base/ns-dblcolon.html">::</a></code> and <code><a href="https://rdrr.io/r/base/ns-dblcolon.html">:::</a></code>. This avoids making it seem like these frame calls are valid R code ready to be typed in (<a href='https://github.com/r-lib/rlang/issues/902'>#902</a>).</p></li>
+<li><p>Backtraces no longer contain inlined objects to avoid performance issues in edge cases (<a href='https://github.com/r-lib/rlang/issues/1069'>#1069</a>, r-lib/testthat<a href='https://github.com/r-lib/rlang/issues/1223'>#1223</a>).</p></li>
+<li><p>Condition constructors now check for duplicate field names (<a href='https://github.com/r-lib/rlang/issues/1268'>#1268</a>).</p></li>
+<li><p><code><a href="../reference/as_label.html">as_label()</a></code> now better handles calls to infix operators (<a href='https://github.com/r-lib/rlang/issues/956'>#956</a>, r-lib/testthat<a href='https://github.com/r-lib/rlang/issues/1432'>#1432</a>). This change improves auto-labelled expressions in data-masking functions like <code>tibble()</code>, <code>mutate()</code>, etc.</p></li>
+<li><p><code><a href="../reference/cnd_message.html">cnd_footer()</a></code> now returns the <code>footer</code> field by default, if any.</p></li>
+<li><p><code><a href="../reference/abort.html">warn()</a></code> and <code><a href="../reference/abort.html">inform()</a></code> now signal conditions of classes <code>"rlang_warning"</code> and <code>"rlang_message"</code> respectively.</p></li>
+<li><p>The <code>{{</code> operator is now detected more strictly (<a href='https://github.com/r-lib/rlang/issues/1087'>#1087</a>). If additional arguments are supplied through <code>{</code>, it is no longer interpreted as an injection operator.</p></li>
+<li><p>The <code>body</code> field of error conditions can now be a character vector.</p></li>
+<li><p>External backtraces in error chains are now separately displayed (<a href='https://github.com/r-lib/rlang/issues/1098'>#1098</a>).</p></li>
+<li><p>Trace capture now better handles wrappers of calling handler in case of rethrown chained errors.</p></li>
+<li>
+<p>The <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> method of rlang errors (commonly invoked with <code><a href="../reference/last_error.html">last_error()</a></code>) has been improved:</p>
+<ul>
+<li>Display calls if present.</li>
+<li>Chained errors are displayed more clearly.</li>
+</ul>
+</li>
+<li><p><code><a href="../reference/as_function.html">as_function()</a></code> gains <code>arg</code> and <code>call</code> arguments to provide contextual information about erroring inputs.</p></li>
+<li><p>The error returned by <code><a href="../reference/last_error.html">last_error()</a></code> is now stored on the search path as the <code>.Last.error</code> binding of the <code>"org:r-lib"</code> environment. This is consistent with how the processx package records error conditions. Printing the <code>.Last.error</code> object is now equivalent to running <code><a href="../reference/last_error.html">last_error()</a></code>.</p></li>
 <li><p>Backtraces now print dangling srcrefs (<a href='https://github.com/r-lib/rlang/issues/1206'>#1206</a>). Paths are shortened to show only three components (two levels of folder and the file).</p></li>
 <li><p><code><a href="../reference/abort.html">abort()</a></code> now outputs error messages to <code>stdout</code> in interactive sessions, following the same approach as <code><a href="../reference/abort.html">inform()</a></code>.</p></li>
-<li><p><code><a href="../reference/abort.html">abort()</a></code> now displays <code>call</code> field in error messages. The call is only displayed if it is a simple expression (e.g. no inlined function) and the arguments are not displayed to avoid distracting from the error message. The message is formatted with the tidyverse style (<code>code</code> formatting by the cli package if available).</p></li>
+<li>
+<p>The “Error:” part of error messages is now printed by rlang instead of R. This introduces several cosmetic and informative changes in errors thrown by <code><a href="../reference/abort.html">abort()</a></code>:</p>
+<ul>
+<li><p>The <code>call</code> field of error messages is now displayed, as is the default in <code><a href="https://rdrr.io/r/base/stop.html">base::stop()</a></code>. The call is only displayed if it is a simple expression (e.g. no inlined function) and the arguments are not displayed to avoid distracting from the error message. The message is formatted with the tidyverse style (<code>code</code> formatting by the cli package if available).</p></li>
+<li><p>The source location is displayed (as in <code><a href="https://rdrr.io/r/base/stop.html">base::stop()</a></code>) if <code>call</code> carries a source reference. Source locations are not displayed when testthat is running to avoid brittle snapshots.</p></li>
+<li><p>If the “Error:” prefix including the call is too long, a line break is introduced to print the error message on the line below. If a source location is displayed in the prefix, a line break is always included.</p></li>
+</ul>
+</li>
+<li><p>The display of chained errors created with the <code>parent</code> argument of <code><a href="../reference/abort.html">abort()</a></code> has been improved. Chains of errors are now displayed at throw time with the error prefix “Caused by error:”.</p></li>
 <li><p>The <code>.ignore_empty</code> argument of <code><a href="../reference/nse-defuse.html">enexprs()</a></code> and <code><a href="../reference/nse-defuse.html">enquos()</a></code> no longer treats named arguments supplied through <code>...</code> as empty, consistently with <code><a href="../reference/nse-defuse.html">exprs()</a></code> and <code><a href="../reference/nse-defuse.html">quos()</a></code> (<a href='https://github.com/r-lib/rlang/issues/1229'>#1229</a>).</p></li>
 <li><p><code><a href="../reference/is_expression.html">is_expression()</a></code> now returns <code>FALSE</code> for manually constructed expressions that cannot be created by the R parser.</p></li>
 <li><p>New C callable <code>rlang_env_unbind()</code>. This is a wrapper around <code>R_removeVarFromFrame()</code> on R &gt;= 4.0.0. On older R this wraps the R function <code><a href="https://rdrr.io/r/base/rm.html">base::rm()</a></code>. Unlike <code><a href="https://rdrr.io/r/base/rm.html">rm()</a></code>, this function does not warn (nor throw) when a binding does not exist.</p></li>

@@ -16,6 +16,15 @@
     <loc>https://rlang.r-lib.org/reference/arg_require.html</loc>
   </url>
   <url>
+    <loc>https://rlang.r-lib.org/reference/args_dots_empty.html</loc>
+  </url>
+  <url>
+    <loc>https://rlang.r-lib.org/reference/args_dots_used.html</loc>
+  </url>
+  <url>
+    <loc>https://rlang.r-lib.org/reference/args_error_context.html</loc>
+  </url>
+  <url>
     <loc>https://rlang.r-lib.org/reference/as_box.html</loc>
   </url>
   <url>
@@ -85,10 +94,10 @@
     <loc>https://rlang.r-lib.org/reference/call_name.html</loc>
   </url>
   <url>
-    <loc>https://rlang.r-lib.org/reference/call_parse_type.html</loc>
+    <loc>https://rlang.r-lib.org/reference/call_standardise.html</loc>
   </url>
   <url>
-    <loc>https://rlang.r-lib.org/reference/call_standardise.html</loc>
+    <loc>https://rlang.r-lib.org/reference/caller_arg.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/caller_env.html</loc>
@@ -136,13 +145,10 @@
     <loc>https://rlang.r-lib.org/reference/cnd_type.html</loc>
   </url>
   <url>
+    <loc>https://rlang.r-lib.org/reference/dev-notes-dots.html</loc>
+  </url>
+  <url>
     <loc>https://rlang.r-lib.org/reference/done.html</loc>
-  </url>
-  <url>
-    <loc>https://rlang.r-lib.org/reference/dots-empty.html</loc>
-  </url>
-  <url>
-    <loc>https://rlang.r-lib.org/reference/dots-used.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/dots_n.html</loc>
@@ -277,6 +283,9 @@
     <loc>https://rlang.r-lib.org/reference/format_error_bullets.html</loc>
   </url>
   <url>
+    <loc>https://rlang.r-lib.org/reference/format_error_call.html</loc>
+  </url>
+  <url>
     <loc>https://rlang.r-lib.org/reference/frame_position.html</loc>
   </url>
   <url>
@@ -284,6 +293,9 @@
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/get_env.html</loc>
+  </url>
+  <url>
+    <loc>https://rlang.r-lib.org/reference/global_entrace.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/has_length.html</loc>
@@ -391,13 +403,22 @@
     <loc>https://rlang.r-lib.org/reference/last_error.html</loc>
   </url>
   <url>
+    <loc>https://rlang.r-lib.org/reference/last_warnings.html</loc>
+  </url>
+  <url>
     <loc>https://rlang.r-lib.org/reference/list2.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/local_bindings.html</loc>
   </url>
   <url>
+    <loc>https://rlang.r-lib.org/reference/local_error_call.html</loc>
+  </url>
+  <url>
     <loc>https://rlang.r-lib.org/reference/local_options.html</loc>
+  </url>
+  <url>
+    <loc>https://rlang.r-lib.org/reference/local_use_cli.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/missing.html</loc>
@@ -505,6 +526,12 @@
     <loc>https://rlang.r-lib.org/reference/rlang_backtrace_on_error.html</loc>
   </url>
   <url>
+    <loc>https://rlang.r-lib.org/reference/rlang_error.html</loc>
+  </url>
+  <url>
+    <loc>https://rlang.r-lib.org/reference/rlib_trace_spec.html</loc>
+  </url>
+  <url>
     <loc>https://rlang.r-lib.org/reference/rst_abort.html</loc>
   </url>
   <url>
@@ -560,6 +587,9 @@
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/trace_back.html</loc>
+  </url>
+  <url>
+    <loc>https://rlang.r-lib.org/reference/try_catch.html</loc>
   </url>
   <url>
     <loc>https://rlang.r-lib.org/reference/type-predicates.html</loc>
